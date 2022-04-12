@@ -1,5 +1,7 @@
 @import url(../vendor/normalize.css);
 
+@import url(../vendor/fonts/inter.css);
+
 @import url(../blocks/transition/transition.css);
 
 @import url(../blocks/root/root.css);
