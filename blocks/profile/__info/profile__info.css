@@ -1,5 +1,5 @@
 .profile__info {
-  margin: 0;
+  margin: 0 auto 0 0;
   padding: 0;
   display: grid;
   grid-template-areas:
@@ -12,6 +12,7 @@
 
 @media (max-width: 767px) {
   .profile__info {
+    margin-right: 0;
     grid-template-areas:
       "none            profile__name   profile__edit-button"
       "profile__about  profile__about  profile__about";
