@@ -1,0 +1,7 @@
+.element__figure {
+  margin: 0;
+  padding: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
