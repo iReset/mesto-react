@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 619px) {
   .profile__add-button {
       min-width: 100%;
       max-width: 100%;

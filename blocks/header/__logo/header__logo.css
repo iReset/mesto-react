@@ -5,7 +5,7 @@
   background: url("../../../images/logo.min.svg") center/cover;
 }
 
-@media (max-width: 424px) {
+@media (max-width: 619px) {
   .header__logo {
     width: 104px;
     height: 24px;

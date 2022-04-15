@@ -2,7 +2,7 @@
   margin: 40px auto 0;
 }
 
-@media (max-width: 424px) {
+@media (max-width: 619px) {
   .root__profile {
     margin: 42px 19px 0;
   }

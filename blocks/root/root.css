@@ -1,8 +1,8 @@
 .root {
   margin: 0 auto;
-  min-width: 320px;
+  min-width: 880px;
   max-width: 880px;
-  width: calc((100vw - 425px) / (1280 - 425) * (880 - 371) + 371px);
+  width: 100%;
   background: black;
   color: white;
 
@@ -19,8 +19,24 @@
   -moz-text-size-adjust: 100%;
 }
 
-@media (max-width: 424px) {
+@media (max-width: 956px) {
   .root {
-    width: 100%;
+    min-width: 581px;
+    max-width: calc(100% - 19px * 4);
+  }
+}
+
+@media (max-width: 619px) {
+  .root {
+    margin: 0;
+    min-width: 282px;
+    max-width: calc(100% - 0px * 2);
+  }
+}
+
+@media (max-width: 282px) {
+  .root {
+    min-width: 282px;
+    max-width: 282px;
   }
 }
