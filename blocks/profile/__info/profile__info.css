@@ -7,7 +7,10 @@
     "profile__about  profile__about";
   grid-template-columns: auto 1fr;
   gap: 16px 18px;
-  align-items: baseline;
+  align-items: center;
+  /* правильным значением является baseline, но Firefox некорректно отображает контент при таком параметре
+  - прижимает к верху */
+  /* align-items: baseline; */
 }
 
 @media (max-width: 619px) {
