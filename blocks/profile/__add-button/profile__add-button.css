@@ -5,7 +5,7 @@
   max-width: 150px;
   height: 50px;
   background: url(./add-button.min.svg) no-repeat center;
-  border: 2px solid white;
+  border: 2px solid #fff;
   box-sizing: border-box;
   border-radius: 2px;
 }
