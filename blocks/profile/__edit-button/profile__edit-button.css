@@ -1,0 +1,31 @@
+.profile__edit-button {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", Arial, "sans-serif";
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+  border: none;
+  background: transparent;
+  grid-area: profile__edit-button;
+}
+
+/* хак для корректного отображения блока, выровненного по baseline, в Firefox */
+.profile__edit-button::before {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  content: "";
+  background: url('./edit-button.min.svg') transparent no-repeat center/cover;
+}
+
+@media (max-width: 619px) {
+  .profile__edit-button::before {
+    width: 18px;
+    height: 18px;
+  }
+  .profile__edit-button {
+    font-size: 27px;
+    line-height: 33px;
+  }
+}

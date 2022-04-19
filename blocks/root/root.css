@@ -1,0 +1,42 @@
+.root {
+  margin: 0 auto;
+  min-width: 880px;
+  max-width: 880px;
+  width: 100%;
+  background: black;
+  color: white;
+
+  font-family: "Inter", Arial, "sans-serif";
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
+
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+@media (max-width: 956px) {
+  .root {
+    min-width: 581px;
+    max-width: calc(100% - 19px * 4);
+  }
+}
+
+@media (max-width: 619px) {
+  .root {
+    margin: 0;
+    min-width: 282px;
+    max-width: calc(100% - 0px * 2);
+  }
+}
+
+@media (max-width: 282px) {
+  .root {
+    min-width: 282px;
+    max-width: 282px;
+  }
+}

@@ -1,0 +1,19 @@
+.element__like-button {
+  width: 22px;
+  height: 22px;
+  outline: none;
+  border: none;
+  background: transparent url(./like-button-normal.min.svg) center/22px no-repeat;
+  transition: all 0.3s ease;
+  /* TODO: не работает в Firefox для background-image
+  теоретически можно применить animation с нарастающим opacity
+  но поскольку в макете такого не требуется, то оставлю на будущее */
+}
+
+.element__like-button:active {
+  background-image: url(./like-button-active.min.svg);
+}
+
+.element__like-button:hover {
+  opacity: 0.5;
+}

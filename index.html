@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Проектная работа. Спринт 4. Курс Веб-разработчик. Школа Яндекс Практикум.">
+  <meta name="keywords" content="js, html5, css3, BEM, Nested">
+  <meta name="author" content="Alexander Ganyushkin aka iReset">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto Russia</title>
+</head>
+
+<body class="root">
+  <header class="header root__header">
+    <a class="header__logo" href="./index.html" target="_self"></a>
+  </header>
+
+  <main>
+    <section class="profile root__profile">
+      <img class="profile__avatar" src="./images/avatar.min.jpg" alt="Аватарка">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__about">Исследователь океана</p>
+        <button class="profile__edit-button button" type="button"></button>
+      </div>
+      <button class="profile__add-button button" type="button"></button>
+    </section>
+
+    <section class="elements root__elements">
+      <ul class="elements__list">
+        <li class="element">
+          <figure class="element__figure">
+            <img class="element__image" src="./images/elements/karachaevsk.min.jpg" alt="Карачаевск" />
+            <figcaption class="element__info">
+              <h2 class="element__caption">Карачаевск</h2>
+              <button class="element__like-button button button_action_like" type="button"
+                aria-label="Нравится"></button>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="element">
+          <figure class="element__figure">
+            <img class="element__image" src="./images/elements/ancestral-trail.min.jpg" alt="Тропа Предков" />
+            <figcaption class="element__info">
+              <h2 class="element__caption">Тропа Предков</h2>
+              <button class="element__like-button button button_action_like" type="button"
+                aria-label="Нравится"></button>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="element">
+          <figure class="element__figure">
+            <img class="element__image" src="./images/elements/altai-mountains.min.jpg" alt="Горы Алтая" />
+            <figcaption class="element__info">
+              <h2 class="element__caption">Горы Алтая</h2>
+              <button class="element__like-button element__like-button_active button button_action_like" type="button"
+                aria-label="Нравится"></button>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="element">
+          <figure class="element__figure">
+            <img class="element__image" src="./images/elements/elbrus.jpg" alt="Эльбрус" />
+            <figcaption class="element__info">
+              <h2 class="element__caption">Эльбрус</h2>
+              <button class="element__like-button button button_action_like" type="button"
+                aria-label="Нравится"></button>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="element">
+          <figure class="element__figure">
+            <img class="element__image" src="./images/elements/dombai.min.jpg" alt="Домбай" />
+            <figcaption class="element__info">
+              <h2 class="element__caption">Домбай</h2>
+              <button class="element__like-button button button_action_like" type="button"
+                aria-label="Нравится"></button>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="element">
+          <figure class="element__figure">
+            <img class="element__image" src="./images/elements/kamchatka.min.jpg" alt="Камчатка" />
+            <figcaption class="element__info">
+              <h2 class="element__caption">Камчатка</h2>
+              <button class="element__like-button button button_action_like" type="button"
+                aria-label="Нравится"></button>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer  root__footer">
+    <p class="footer__copyright">2022&nbsp;Mesto&nbsp;Russia</p>
+  </footer>
+
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button button" type="button" aria-label="закрыть форму ввода"></button>
+      <form class="popup__profile" action="post" id="profile-edit" name="profile-edit">
+        <fieldset class="popup__fieldset">
+          <legend class="popup__title">Редактировать профиль</legend>
+          <input class="popup__input popup__input_type_name" type="text" id="name" name="name" value=""
+            placeholder="Имя">
+          <input class="popup__input popup__input_type_about" type="text" id="about" name="about" value=""
+            placeholder="О себе">
+          <button class="popup__save-button button button_action_save" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <script src="./scripts/popup-profile.js"></script>
+</body>
+
+</html>

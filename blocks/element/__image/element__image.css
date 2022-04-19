@@ -1,0 +1,25 @@
+.element__image {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100% - 79px);
+  object-fit: cover;
+  transition: all .75s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.element__image:hover {
+  opacity: .95;
+  transform: scale(1.03);
+}
+
+@media (max-width: 282px) {
+  .element__image {
+    margin: 0 auto;
+  }
+}

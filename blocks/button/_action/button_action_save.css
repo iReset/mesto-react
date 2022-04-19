@@ -1,0 +1,7 @@
+.button_action_save:hover, .button_action_save:focus {
+  opacity: 0.8;
+}
+
+.button_action_save:active {
+opacity: 0.7;
+}
