@@ -13,6 +13,7 @@
 @media (max-width: 619px) {
   .profile__info {
     margin: -6px 0 1px;
+    max-width: 423px;
     /* ручная подгонка ((( под необъяснимое решение дизайнера сделать height меньше, чем line-height */
     grid-template-areas:
       "none            profile__name   profile__edit-button"
