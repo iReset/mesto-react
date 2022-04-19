@@ -2,7 +2,7 @@
   width: 142px;
   height: 33px;
   display: block;
-  background: url("../../../images/logo.min.svg") center/cover;
+  background: url("./logo.min.svg") center/cover;
 }
 
 @media (max-width: 619px) {
