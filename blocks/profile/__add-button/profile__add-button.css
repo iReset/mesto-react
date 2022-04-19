@@ -4,7 +4,7 @@
   min-width: 150px;
   max-width: 150px;
   height: 50px;
-  background: url(../../../images/add-button.min.svg) no-repeat center;
+  background: url(./add-button.min.svg) no-repeat center;
   border: 2px solid white;
   box-sizing: border-box;
   border-radius: 2px;
