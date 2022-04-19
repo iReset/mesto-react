@@ -11,7 +11,7 @@
 }
 
 /* хак для корректного отображения блока, выровненного по baseline, в Firefox */
-.profile__edit-button:before {
+.profile__edit-button::before {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -20,7 +20,7 @@
 }
 
 @media (max-width: 619px) {
-  .profile__edit-button:before {
+  .profile__edit-button::before {
     width: 18px;
     height: 18px;
   }
