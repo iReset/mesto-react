@@ -7,7 +7,7 @@
   position: relative;
 }
 
-.element__figure:before {
+.element__figure::before {
   content: "";
   padding-bottom: 100%;
   display: block;
