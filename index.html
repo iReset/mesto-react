@@ -95,5 +95,23 @@
   <footer class="footer  root__footer">
     <p class="footer__copyright">2022&nbsp;Mesto&nbsp;Russia</p>
   </footer>
+
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button button" type="button" aria-label="закрыть форму ввода"></button>
+      <form class="popup__profile" action="post" id="profile-edit" name="profile-edit">
+        <fieldset class="popup__fieldset">
+          <legend class="popup__title">Редактировать профиль</legend>
+          <input class="popup__input popup__input_type_name" type="text" id="name" name="name" value=""
+            placeholder="Имя">
+          <input class="popup__input popup__input_type_about" type="text" id="about" name="about" value=""
+            placeholder="О себе">
+          <button class="popup__save-button button button_action_save" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <script src="./scripts/popup-profile.js"></script>
 </body>
+
 </html>
