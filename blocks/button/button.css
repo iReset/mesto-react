@@ -1,0 +1,12 @@
+.button {
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.button:hover, .button:focus {
+    opacity: 0.6;
+}
+
+.button:active {
+  opacity: 0.5;
+}
