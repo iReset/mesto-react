@@ -5,6 +5,7 @@
   height: 79px;
   display: flex;
   justify-content: space-between;
+  column-gap: 10px;
   align-items: center;
   background: white;
   z-index: 1;
