@@ -4,4 +4,11 @@
   background: white;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.element__figure:before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
 }
