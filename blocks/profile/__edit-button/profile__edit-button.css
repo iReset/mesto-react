@@ -4,7 +4,7 @@
   width: 24px;
   height: 24px;
   border: none;
-  background: url('../../../images/edit-button.min.svg') transparent no-repeat center/cover;
+  background: url('./edit-button.min.svg') transparent no-repeat center/cover;
   grid-area: profile__edit-button;
 }
 
