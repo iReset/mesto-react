@@ -10,6 +10,7 @@ function openPopup() {
   popup.classList.add('popup_opened');
   nameInput.value = nameField.textContent.trim();
   aboutInput.value = aboutField.textContent.trim();
+  nameInput.focus();
 }
 
 function closePopup() {
