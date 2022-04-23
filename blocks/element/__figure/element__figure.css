@@ -4,11 +4,12 @@
   background: #fff;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
+/* пояснения по этому блоку привел в elements__image.css */
+/*
 .element__figure::before {
   content: "";
   padding-bottom: 100%;
   display: block;
-}
+} */
