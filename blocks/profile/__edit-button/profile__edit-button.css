@@ -1,30 +1,38 @@
 .profile__edit-button {
-  margin: 0;
+  margin: 16px 0 0;
   padding: 0;
+  width: 24px;
+  height: 24px;
   font-family: "Inter", Arial, "sans-serif";
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
   border: none;
-  background: transparent;
+  background: url('./edit-button.min.svg') transparent no-repeat center/cover;
   grid-area: profile__edit-button;
 }
 
-/* хак для корректного отображения блока, выровненного по baseline, в Firefox */
-.profile__edit-button::before {
+/* блок ниже нарушал чеклист, но был предназначен для устранения бага
+  в Firefox, не позволяющего выровнять кнопку по базовой линии.
+  При использовании align-items: baseline кнопка прижимается вверх.
+  Я буду благодарен, если дадите ссылку на другой способ исправить этот баг. */
+/* .profile__edit-button::before {
   display: inline-block;
   width: 24px;
   height: 24px;
   content: "";
   background: url('./edit-button.min.svg') transparent no-repeat center/cover;
-}
+} */
 
 @media (max-width: 619px) {
-  .profile__edit-button::before {
+  /* .profile__edit-button::before {
     width: 18px;
     height: 18px;
-  }
+  } */
   .profile__edit-button {
+    margin-top: 8px;
+    width: 18px;
+    height: 18px;
     font-size: 27px;
     line-height: 33px;
   }
