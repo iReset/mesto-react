@@ -11,7 +11,11 @@ function openPopup() {
   popup.classList.add('popup_opened');
   nameInput.value = nameField.textContent.trim();
   aboutInput.value = aboutField.textContent.trim();
-  nameInput.focus();
+  // nameInput.focus();
+  // как же этот код не относится к заданию?
+  // ведь необходимо открыть окно редактирования и вставить значения в поля
+  // а затем отредактировать
+  // разве фокусировка на первом элементе ввода не относится к заданию???
 }
 
 // "Закрывает" окно редактирования профиля
