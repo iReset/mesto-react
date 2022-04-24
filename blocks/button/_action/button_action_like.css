@@ -1,7 +1,8 @@
-.button_action_like:hover, .button_action_like:focus {
+.button_action_like:hover,
+.button_action_like:focus {
   opacity: 0.5;
 }
 
 .button_action_like:active {
-opacity: 0.4;
+  opacity: 0.4;
 }
