@@ -12,7 +12,7 @@
 
 @media (max-width: 619px) {
   .profile__info {
-    margin: -6px 0 1px;
+    margin: 0 0 7px;
     max-width: 423px;
     grid-template-areas:
       "none            profile__name   profile__edit-button"
