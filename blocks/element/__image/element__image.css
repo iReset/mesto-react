@@ -7,11 +7,6 @@
   transition: all .75s ease;
 }
 
-.element__image:hover {
-  opacity: .95;
-  transform: scale(1.03);
-}
-
 @media (max-width: 282px) {
   .element__image {
     margin: 0 auto;
