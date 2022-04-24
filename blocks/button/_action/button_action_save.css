@@ -6,3 +6,5 @@
 .button_action_save:active {
   opacity: 0.7;
 }
+/* у .button в button.css уже задан свой :hover. для кнопки save opacity другой.
+поэтому hover для состояния save модификатора action тоже отличается */
