@@ -24,7 +24,7 @@ function closePopup() {
 }
 
 // Обрабатывает оправку формы
-function formSubmitHandler(event) {
+function handleFormSubmit(event) {
   event.preventDefault();
   nameField.textContent = nameInput.value.trim();
   aboutField.textContent = aboutInput.value.trim();
@@ -33,4 +33,4 @@ function formSubmitHandler(event) {
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-popup.addEventListener('submit', formSubmitHandler);
+popup.addEventListener('submit', handleFormSubmit);
