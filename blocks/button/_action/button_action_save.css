@@ -1,4 +1,5 @@
-.button_action_save:hover, .button_action_save:focus {
+.button_action_save:hover,
+.button_action_save:focus {
   opacity: 0.8;
 }
 
