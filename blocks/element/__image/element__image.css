@@ -3,7 +3,6 @@
   padding: 0;
   width: 100%;
   max-width: 100%;
-  height: calc(100% - 79px);
   object-fit: cover;
   transition: all .75s ease;
 }
