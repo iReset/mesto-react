@@ -4,10 +4,7 @@
   right: -40px;
   width: 32px;
   height: 32px;
-  outline: none;
-  border: none;
-  background: transparent url(./close-button.min.svg) center/cover no-repeat;
-  transition: all 0.3s ease;
+  background-image: url(./close-button.min.svg);
 }
 
 @media (max-width: 619px) {
