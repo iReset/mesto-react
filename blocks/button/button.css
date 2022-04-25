@@ -1,6 +1,12 @@
 .button {
-  transition: opacity 0.5s ease-in-out;
+  margin: 0;
+  padding: 0;
+  transition: all 0.4s ease-in-out;
   cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent center no-repeat;
+  font-family: 'Inter', 'Arial', sans-serif;
 }
 
 .button:hover,
