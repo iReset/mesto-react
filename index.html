@@ -27,57 +27,9 @@
       <button class="profile__add-button button" type="button" aria-label="Добавить."></button>
     </section>
 
-    <section class="elements root__elements">
+    <section class="elements root__elements" aria-label="Блок с карточками мест.">
       <ul class="elements__list">
-        <li class="element">
-          <img class="element__image" src="./images/elements/karachaevsk.min.jpg"
-            alt="Церковь в Карачаевске на фоне гор." />
-          <div class="element__info">
-            <h2 class="element__caption">Карачаевск</h2>
-            <button class="element__like-button button" type="button" aria-label="Нравится."></button>
-            <!-- большое спасибо за терпеливые и подробные разъяснения.
-            очень стыдно, но я сначала вообще не туда смотрел... и opacity лишний пропустил... позорище...
-            а я думал, что у меня очень достойный код ))) надо больше стараться -->
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/ancestral-trail.min.jpg"
-            alt="Тропа Предков в Хакассии на фоне хребта и реки." />
-          <div class="element__info">
-            <h2 class="element__caption">Тропа Предков</h2>
-            <button class="element__like-button button" type="button" aria-label="Нравится."></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/altai-mountains.min.jpg" alt="Река в горах Алтая." />
-          <div class="element__info">
-            <h2 class="element__caption">Горы Алтая</h2>
-            <button class="element__like-button button" type="button" aria-label="Нравится."></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/elbrus.min.jpg" alt="Небольшая речка в районе Эльбруса." />
-          <div class="element__info">
-            <h2 class="element__caption">Эльбрус</h2>
-            <button class="element__like-button button" type="button" aria-label="Нравится."></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/dombai.min.jpg"
-            alt="Вид на горы горнолыжного курорта Домбай." />
-          <div class="element__info">
-            <h2 class="element__caption">Домбай</h2>
-            <button class="element__like-button button" type="button" aria-label="Нравится."></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__image" src="./images/elements/kamchatka.min.jpg"
-            alt="Прямая дорога ведет к горе на Камчатке." />
-          <div class="element__info">
-            <h2 class="element__caption">Камчатка</h2>
-            <button class="element__like-button button" type="button" aria-label="Нравится."></button>
-          </div>
-        </li>
+        <!-- место для карточек -->
       </ul>
     </section>
   </main>
@@ -103,6 +55,18 @@
       </form>
     </div>
   </div>
+
+  <template id="element">
+    <li class="element">
+      <img class="element__image" src="#" alt="" />
+      <div class="element__info">
+        <h2 class="element__caption"></h2>
+        <button class="element__like-button button" type="button" aria-label="Нравится."></button>
+      </div>
+    </li>
+  </template>
+
+  <script src="./scripts/init-cards.js"></script>
   <script src="./scripts/popup-profile.js"></script>
 </body>
 
