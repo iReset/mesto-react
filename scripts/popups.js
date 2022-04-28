@@ -6,7 +6,10 @@ let nameField = document.querySelector('.profile__name');
 let aboutField = document.querySelector('.profile__about');
 const addButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_type_add-card');
+let titleInput = document.querySelector('.popup__input_type_title');
+let linkInput = document.querySelector('.popup__input_type_link');
 const closeButtons = document.querySelectorAll('.popup__close-button');
+const elementsList = document.querySelector('.elements__list');
 
 
 // "Открывает" всплывающее окно
@@ -44,6 +47,12 @@ function openPopupAddCard() {
 // Обрабатывает оправку формы добавления карточки
 function saveAddCard(event) {
   event.preventDefault();
+  const cardElement = createCard({
+    name: titleInput.value,
+    alt: titleInput.value,
+    link: linkInput.value
+  });
+  elementsList.prepend(cardElement);
   closePopup(popupAddCard);
 }
 
