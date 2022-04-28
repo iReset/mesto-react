@@ -49,6 +49,11 @@ function likeCard(event) {
   event.target.classList.toggle("element__like-button_active");
 }
 
+// Удаляет карточку
+function removeCard(event) {
+  event.target.closest('.element').remove();
+}
+
 // Обрабатывает оправку формы добавления карточки
 function saveAddCard(event) {
   event.preventDefault();

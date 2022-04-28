@@ -45,11 +45,13 @@ function createCard(card) {
   const elementCaption = element.querySelector('.element__caption');
   const elementImage = element.querySelector('.element__image');
   const elementLike = element.querySelector('.element__like-button');
+  const elementRemove = element.querySelector('.element__remove-button');
 
   elementCaption.textContent = card.name;
   elementImage.src = card.link;
   elementImage.alt = card.alt;
   elementLike.addEventListener("click", likeCard);
+  elementRemove.addEventListener("click", removeCard);
 
   return element;
 }
