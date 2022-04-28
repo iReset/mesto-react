@@ -44,6 +44,11 @@ function openPopupAddCard() {
   openPopup(popupAddCard);
 }
 
+// Изменяет статус лайка
+function likeCard(event) {
+  event.target.classList.toggle("element__like-button_active");
+}
+
 // Обрабатывает оправку формы добавления карточки
 function saveAddCard(event) {
   event.preventDefault();
@@ -52,6 +57,7 @@ function saveAddCard(event) {
     alt: titleInput.value,
     link: linkInput.value
   });
+  cardElement.querySelector(".element__like-button").addEventListener("click", likeCard);
   elementsList.prepend(cardElement);
   closePopup(popupAddCard);
 }

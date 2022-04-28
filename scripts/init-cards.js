@@ -44,10 +44,12 @@ function createCard(card) {
   const element = elementTemplate.cloneNode(true);
   const elementCaption = element.querySelector('.element__caption');
   const elementImage = element.querySelector('.element__image');
+  const elementLike = element.querySelector('.element__like-button');
 
   elementCaption.textContent = card.name;
   elementImage.src = card.link;
   elementImage.alt = card.alt;
+  elementLike.addEventListener("click", likeCard);
 
   return element;
 }
