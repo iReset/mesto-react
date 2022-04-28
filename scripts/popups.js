@@ -1,31 +1,36 @@
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button');
-const popup = document.querySelector('.popup');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 let nameInput = document.querySelector('.popup__input_type_name');
 let aboutInput = document.querySelector('.popup__input_type_about');
 let nameField = document.querySelector('.profile__name');
 let aboutField = document.querySelector('.profile__about');
 
-// "Открывает" окно редактирования профиля
-function openPopup() {
+// "Открывает" всплывающее окно
+function openPopup(popup) {
   popup.classList.add('popup_opened');
-  nameInput.value = nameField.textContent.trim();
-  aboutInput.value = aboutField.textContent.trim();
 }
 
-// "Закрывает" окно редактирования профиля
-function closePopup() {
+// "Закрывает" всплывающее окно
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-// Обрабатывает оправку формы
+// "Открывает" окно редактирования профиля
+function openPopupEditProfile() {
+  nameInput.value = nameField.textContent.trim();
+  aboutInput.value = aboutField.textContent.trim();
+  openPopup(popupEditProfile);
+}
+
+// Обрабатывает оправку формы редактирования профиля
 function handleFormSubmit(event) {
   event.preventDefault();
   nameField.textContent = nameInput.value.trim();
   aboutField.textContent = aboutInput.value.trim();
-  closePopup();
+  closePopup(popupEditProfile);
 }
 
-editButton.addEventListener('click', openPopup);
+editButton.addEventListener('click', openPopupEditProfile);
 closeButton.addEventListener('click', closePopup);
-popup.addEventListener('submit', handleFormSubmit);
+popupEditProfile.addEventListener('submit', handleFormSubmit);
