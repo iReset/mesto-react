@@ -62,7 +62,6 @@ function saveAddCard(event) {
     alt: titleInput.value,
     link: linkInput.value
   });
-  cardElement.querySelector(".element__like-button").addEventListener("click", likeCard);
   elementsList.prepend(cardElement);
   closePopup(popupAddCard);
 }
