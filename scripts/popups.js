@@ -24,7 +24,7 @@ function openPopupEditProfile() {
 }
 
 // Обрабатывает оправку формы редактирования профиля
-function handleFormSubmit(event) {
+function saveEditProfile(event) {
   event.preventDefault();
   nameField.textContent = nameInput.value.trim();
   aboutField.textContent = aboutInput.value.trim();
@@ -32,7 +32,7 @@ function handleFormSubmit(event) {
 }
 
 editButton.addEventListener('click', openPopupEditProfile);
-popupEditProfile.addEventListener('submit', handleFormSubmit);
+popupEditProfile.addEventListener('submit', saveEditProfile);
 closeButtons.forEach(button => {
   const popup = button.closest(".popup");
   button.addEventListener('click', () => closePopup(popup));
