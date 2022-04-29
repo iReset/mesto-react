@@ -50,6 +50,7 @@ function createCard(card) {
   elementCaption.textContent = card.name;
   elementImage.src = card.link;
   elementImage.alt = card.alt;
+  elementImage.addEventListener("click", openImage)
   elementLike.addEventListener("click", likeCard);
   elementRemove.addEventListener("click", removeCard);
 
