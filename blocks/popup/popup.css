@@ -1,4 +1,5 @@
 .popup {
+  display: flex;
   visibility: hidden;
   opacity: 0;
   position: fixed;
@@ -10,5 +11,5 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  transition: visibility 0s, opacity 0.3s ease-in-out;
+  transition: visibility 0.3s, opacity 0.3s linear;
 }
