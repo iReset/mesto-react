@@ -6,6 +6,7 @@ const fieldName = document.querySelector('.profile__name');
 const fieldAbout = document.querySelector('.profile__about');
 const buttonAdd = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_type_add-card');
+const formAdd = popupAddCard.querySelector('.popup__card');
 const inputTitle = document.querySelector('.popup__input_type_title');
 const inputLink = document.querySelector('.popup__input_type_link');
 const popupOpenImage = document.querySelector('.popup_type_open-image');
@@ -55,8 +56,7 @@ function saveAddCard(event) {
 
 // "Открывает" окно добавления карточки
 function openPopupAddCard() {
-  const form = popupAddCard.querySelector('.popup__card');
-  form.reset();
+  formAdd.reset();
   openPopup(popupAddCard);
 }
 
