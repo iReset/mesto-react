@@ -13,6 +13,7 @@ let bigImage = document.querySelector('.popup__image');
 let bigCaption = document.querySelector('.popup__caption');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
+const elementTemplate = document.querySelector('#element').content;
 
 
 // "Открывает" всплывающее окно
@@ -79,7 +80,6 @@ function openImage(event) {
 
 // Создает карточку
 function createCard(card) {
-  const elementTemplate = document.querySelector('#element').content;
   const element = elementTemplate.cloneNode(true);
   const elementCaption = element.querySelector('.element__caption');
   const elementImage = element.querySelector('.element__image');
