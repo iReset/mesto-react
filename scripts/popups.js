@@ -77,10 +77,36 @@ function openImage(event) {
   openPopup(popupOpenImage);
 }
 
+// Создает карточку
+function createCard(card) {
+  const elementTemplate = document.querySelector('#element').content;
+  const element = elementTemplate.cloneNode(true);
+  const elementCaption = element.querySelector('.element__caption');
+  const elementImage = element.querySelector('.element__image');
+  const elementLike = element.querySelector('.element__like-button');
+  const elementRemove = element.querySelector('.element__remove-button');
+
+  elementCaption.textContent = card.name;
+  elementImage.src = card.link;
+  elementImage.alt = card.alt;
+  elementImage.addEventListener("click", openImage)
+  elementLike.addEventListener("click", likeCard);
+  elementRemove.addEventListener("click", removeCard);
+
+  return element;
+}
+
+
 editButton.addEventListener('click', openPopupEditProfile);
 popupEditProfile.addEventListener('submit', saveEditProfile);
 addButton.addEventListener('click', openPopupAddCard);
 popupAddCard.addEventListener('submit', saveAddCard);
+
+initialCards.forEach(card => {
+  const elementsList = document.querySelector('.elements__list');
+
+  elementsList.append(createCard(card));
+});
 closeButtons.forEach(button => {
   const popup = button.closest(".popup");
   button.addEventListener('click', () => closePopup(popup));
