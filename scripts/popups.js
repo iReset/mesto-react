@@ -1,5 +1,6 @@
 const buttonEdit = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const formEditProfile = popupEditProfile.querySelector('.popup__profile');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputAbout = document.querySelector('.popup__input_type_about');
 const fieldName = document.querySelector('.profile__name');
@@ -98,7 +99,7 @@ function createCard(card) {
 
 
 buttonEdit.addEventListener('click', openPopupEditProfile);
-popupEditProfile.addEventListener('submit', saveEditProfile);
+formEditProfile.addEventListener('submit', saveEditProfile);
 buttonAdd.addEventListener('click', openPopupAddCard);
 popupAddCard.addEventListener('submit', saveAddCard);
 
