@@ -1,17 +1,17 @@
-const editButton = document.querySelector('.profile__edit-button');
+const buttonEdit = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const nameInput = document.querySelector('.popup__input_type_name');
-const aboutInput = document.querySelector('.popup__input_type_about');
-const nameField = document.querySelector('.profile__name');
-const aboutField = document.querySelector('.profile__about');
-const addButton = document.querySelector('.profile__add-button');
+const inputName = document.querySelector('.popup__input_type_name');
+const inputAbout = document.querySelector('.popup__input_type_about');
+const fieldName = document.querySelector('.profile__name');
+const fieldAbout = document.querySelector('.profile__about');
+const buttonAdd = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const titleInput = document.querySelector('.popup__input_type_title');
-const linkInput = document.querySelector('.popup__input_type_link');
+const inputTitle = document.querySelector('.popup__input_type_title');
+const inputLink = document.querySelector('.popup__input_type_link');
 const popupOpenImage = document.querySelector('.popup_type_open-image');
-const bigImage = document.querySelector('.popup__image');
-const bigCaption = document.querySelector('.popup__caption');
-const closeButtons = document.querySelectorAll('.popup__close-button');
+const fieldBigImage = document.querySelector('.popup__image');
+const fieldBigCaption = document.querySelector('.popup__caption');
+const buttonsClose = document.querySelectorAll('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#element').content;
 
@@ -28,16 +28,16 @@ function closePopup(popup) {
 
 // "Открывает" окно редактирования профиля
 function openPopupEditProfile() {
-  nameInput.value = nameField.textContent.trim();
-  aboutInput.value = aboutField.textContent.trim();
+  inputName.value = fieldName.textContent.trim();
+  inputAbout.value = fieldAbout.textContent.trim();
   openPopup(popupEditProfile);
 }
 
 // Обрабатывает оправку формы редактирования профиля
 function saveEditProfile(event) {
   event.preventDefault();
-  nameField.textContent = nameInput.value.trim();
-  aboutField.textContent = aboutInput.value.trim();
+  fieldName.textContent = inputName.value.trim();
+  fieldAbout.textContent = inputAbout.value.trim();
   closePopup(popupEditProfile);
 }
 
@@ -45,9 +45,9 @@ function saveEditProfile(event) {
 function saveAddCard(event) {
   event.preventDefault();
   const cardElement = createCard({
-    name: titleInput.value,
-    alt: titleInput.value,
-    link: linkInput.value
+    name: inputTitle.value,
+    alt: inputTitle.value,
+    link: inputLink.value
   });
   elementsList.prepend(cardElement);
   closePopup(popupAddCard);
@@ -73,8 +73,8 @@ function removeCard(event) {
 
 // Разворачивает изображение на весь экран
 function openImage(card) {
-  bigImage.src = card.link;
-  bigCaption.innerText = card.name;
+  fieldBigImage.src = card.link;
+  fieldBigCaption.innerText = card.name;
   openPopup(popupOpenImage);
 }
 
@@ -97,15 +97,15 @@ function createCard(card) {
 }
 
 
-editButton.addEventListener('click', openPopupEditProfile);
+buttonEdit.addEventListener('click', openPopupEditProfile);
 popupEditProfile.addEventListener('submit', saveEditProfile);
-addButton.addEventListener('click', openPopupAddCard);
+buttonAdd.addEventListener('click', openPopupAddCard);
 popupAddCard.addEventListener('submit', saveAddCard);
 
 initialCards.forEach(card => {
   elementsList.append(createCard(card));
 });
-closeButtons.forEach(button => {
+buttonsClose.forEach(button => {
   const popup = button.closest(".popup");
   button.addEventListener('click', () => closePopup(popup));
 });
