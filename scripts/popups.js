@@ -103,8 +103,6 @@ addButton.addEventListener('click', openPopupAddCard);
 popupAddCard.addEventListener('submit', saveAddCard);
 
 initialCards.forEach(card => {
-  const elementsList = document.querySelector('.elements__list');
-
   elementsList.append(createCard(card));
 });
 closeButtons.forEach(button => {
