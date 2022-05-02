@@ -72,9 +72,9 @@ function removeCard(event) {
 
 
 // Разворачивает изображение на весь экран
-function openImage(event) {
-  bigImage.src = event.target.src;
-  bigCaption.innerText = event.target.closest(".element").querySelector(".element__caption").textContent;
+function openImage(card) {
+  bigImage.src = card.link;
+  bigCaption.innerText = card.name;
   openPopup(popupOpenImage);
 }
 
@@ -89,7 +89,7 @@ function createCard(card) {
   elementCaption.textContent = card.name;
   elementImage.src = card.link;
   elementImage.alt = card.alt;
-  elementImage.addEventListener("click", openImage)
+  elementImage.addEventListener("click", () => openImage(card))
   elementLike.addEventListener("click", likeCard);
   elementRemove.addEventListener("click", removeCard);
 
