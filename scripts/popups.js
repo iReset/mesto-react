@@ -75,6 +75,7 @@ function removeCard(event) {
 // Разворачивает изображение на весь экран
 function openImage(card) {
   fieldBigImage.src = card.link;
+  fieldBigImage.alt = card.alt;
   fieldBigCaption.innerText = card.name;
   openPopup(popupOpenImage);
 }
