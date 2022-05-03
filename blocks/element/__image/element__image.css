@@ -11,6 +11,8 @@
 .element__image:hover {
   opacity: .95;
   transform: scale(1.03);
+  /* вот ведь невнимательность какая ((( */
+  cursor: pointer;
 }
 
 @media (max-width: 282px) {
