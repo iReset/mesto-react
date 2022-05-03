@@ -11,8 +11,7 @@
   line-height: 22px;
 }
 
-.popup__save-button:hover,
-.popup__save-button:focus {
+.popup__save-button:hover {
   opacity: 0.8;
 }
 

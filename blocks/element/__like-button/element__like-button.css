@@ -4,8 +4,7 @@
   background-image: url(./like-button-normal.min.svg);
 }
 
-.element__like-button:hover,
-.element__like-button:focus {
+.element__like-button:hover {
   opacity: 0.5;
 }
 
