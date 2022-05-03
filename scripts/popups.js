@@ -76,7 +76,7 @@ function removeCard(event) {
 function openImage(card) {
   fieldBigImage.src = card.link;
   fieldBigImage.alt = card.alt;
-  fieldBigCaption.innerText = card.name;
+  fieldBigCaption.textContent = card.name;
   openPopup(popupOpenImage);
 }
 
