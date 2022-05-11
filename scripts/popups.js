@@ -20,7 +20,10 @@ const elementTemplate = document.querySelector('#element').content;
 
 // "Открывает" всплывающее окно
 function openPopup(popup) {
+  const form = popup.querySelector('.popup__form');
+
   popup.classList.add('popup_opened');
+  checkFormValidity(form, optionsValidation);
 }
 
 // "Закрывает" всплывающее окно
