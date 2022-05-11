@@ -19,17 +19,24 @@ const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#element').content;
 
 
+function handleEscape(event) {
+  const popup = document.querySelector('.popup_opened');
+  closePopup(popup);
+}
+
 // "Открывает" всплывающее окно
 function openPopup(popup) {
   const form = popup.querySelector('.popup__form');
 
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscape);
   checkFormValidity(form, optionsValidation);
 }
 
 // "Закрывает" всплывающее окно
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscape);
 }
 
 // "Открывает" окно редактирования профиля
@@ -119,11 +126,6 @@ buttonsClose.forEach(button => {
 popups.forEach(popup => {
   popup.addEventListener('click', evt => {
     if (evt.target.classList.contains('popup')) {
-      closePopup(popup);
-    }
-  });
-  popup.addEventListener('keydown', evt => {
-    if (evt.key === 'Escape') {
       closePopup(popup);
     }
   });
