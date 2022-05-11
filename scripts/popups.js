@@ -20,6 +20,9 @@ const elementTemplate = document.querySelector('#element').content;
 
 
 function handleEscape(event) {
+  if (event.key !== 'Escape') {
+    return;
+  }
   const popup = document.querySelector('.popup_opened');
   closePopup(popup);
 }
@@ -30,7 +33,6 @@ function openPopup(popup) {
 
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscape);
-  checkFormValidity(form, optionsValidation);
 }
 
 // "Закрывает" всплывающее окно
@@ -43,6 +45,7 @@ function closePopup(popup) {
 function openPopupEditProfile() {
   inputName.value = fieldName.textContent.trim();
   inputAbout.value = fieldAbout.textContent.trim();
+  checkFormValidity(formEditProfile, [inputName, inputAbout], optionsValidation);
   openPopup(popupEditProfile);
 }
 
@@ -69,6 +72,7 @@ function saveAddCard(event) {
 // "Открывает" окно добавления карточки
 function openPopupAddCard() {
   formAdd.reset();
+  checkFormValidity(formAdd, [inputTitle, inputLink], optionsValidation);
   openPopup(popupAddCard);
 }
 
