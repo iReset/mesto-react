@@ -123,7 +123,7 @@ popups.forEach(popup => {
     }
   });
   popup.addEventListener('keydown', evt => {
-    if (evt.key === 'Esc') {
+    if (evt.key === 'Escape') {
       closePopup(popup);
     }
   });
