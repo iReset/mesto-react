@@ -70,7 +70,7 @@ function saveAddCard(event) {
 // "Открывает" окно добавления карточки
 function openPopupAddCard() {
   formAdd.reset();
-  checkFormValidity(formAdd, [inputTitle, inputLink], optionsValidation);
+  resetFormValidation(formAdd, [inputTitle, inputLink], optionsValidation);
   openPopup(popupAddCard);
 }
 

@@ -1,0 +1,7 @@
+.popup__input_untouched:invalid {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.popup__input_untouched:invalid:focus {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+}
