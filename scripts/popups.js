@@ -43,7 +43,7 @@ function closePopup(popup) {
 function openPopupEditProfile() {
   inputName.value = fieldName.textContent.trim();
   inputAbout.value = fieldAbout.textContent.trim();
-  checkFormValidity(formEditProfile, [inputName, inputAbout], optionsValidation);
+  resetFormValidation(formEditProfile, [inputName, inputAbout], optionsValidation);
   openPopup(popupEditProfile);
 }
 
@@ -126,7 +126,7 @@ buttonsClose.forEach(button => {
 });
 
 popups.forEach(popup => {
-  popup.addEventListener('click', evt => {
+  popup.addEventListener('mousedown', evt => {
     if (evt.target.classList.contains('popup')) {
       closePopup(popup);
     }
