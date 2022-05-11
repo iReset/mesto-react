@@ -44,9 +44,11 @@
       <form class="popup__profile" id="profile-edit" name="profile-edit">
         <fieldset class="popup__fieldset">
           <input class="popup__input popup__input_type_name" type="text" id="name" name="name" value=""
-            placeholder="Имя" required>
+            placeholder="Имя" required minlength="2" maxlength="40">
+          <span class="popup__input-error" id="name-error" hidden></span>
           <input class="popup__input popup__input_type_about" type="text" id="about" name="about" value=""
-            placeholder="О себе" required>
+            placeholder="О себе" required minlength="2" maxlength="200">
+          <span class="popup__input-error" id="about-error" hidden></span>
           <button class="popup__save-button button" type="submit">Сохранить</button>
         </fieldset>
       </form>
@@ -94,6 +96,7 @@
 
   <script src="./scripts/init-cards.js"></script>
   <script src="./scripts/popups.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
