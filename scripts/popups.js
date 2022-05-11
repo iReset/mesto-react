@@ -13,6 +13,7 @@ const inputLink = document.querySelector('.popup__input_type_link');
 const popupOpenImage = document.querySelector('.popup_type_open-image');
 const fieldBigImage = document.querySelector('.popup__image');
 const fieldBigCaption = document.querySelector('.popup__caption');
+const popups = document.querySelectorAll('.popup');
 const buttonsClose = document.querySelectorAll('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#element').content;
@@ -114,3 +115,7 @@ buttonsClose.forEach(button => {
   const popup = button.closest(".popup");
   button.addEventListener('click', () => closePopup(popup));
 });
+
+popups.forEach(popup => {
+  popup.addEventListener('click', () => closePopup(popup));
+})
