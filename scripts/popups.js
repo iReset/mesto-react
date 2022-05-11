@@ -117,5 +117,14 @@ buttonsClose.forEach(button => {
 });
 
 popups.forEach(popup => {
-  popup.addEventListener('click', () => closePopup(popup));
+  popup.addEventListener('click', evt => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup);
+    }
+  });
+  popup.addEventListener('keydown', evt => {
+    if (evt.key === 'Esc') {
+      closePopup(popup);
+    }
+  });
 })
