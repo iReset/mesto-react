@@ -73,6 +73,9 @@ const setEventListeners = (form, options) => {
 
 
 const checkFormValidity = (form, options) => {
+  if (!form) {
+    return;
+  }
   const inputList = Array.from(form.querySelectorAll(`.${options.inputSelector}`));
   const buttonElement = form.querySelector(`.${options.buttonSubmitClass}`);
 
