@@ -29,8 +29,6 @@ function handleEscape(event) {
 
 // "Открывает" всплывающее окно
 function openPopup(popup) {
-  const form = popup.querySelector('.popup__form');
-
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscape);
 }
@@ -72,7 +70,7 @@ function saveAddCard(event) {
 // "Открывает" окно добавления карточки
 function openPopupAddCard() {
   formAdd.reset();
-  checkFormValidity(formAdd, [inputTitle, inputLink], optionsValidation);
+  resetFormValidation(formAdd, [inputTitle, inputLink], optionsValidation);
   openPopup(popupAddCard);
 }
 
