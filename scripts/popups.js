@@ -29,8 +29,6 @@ function handleEscape(event) {
 
 // "Открывает" всплывающее окно
 function openPopup(popup) {
-  const form = popup.querySelector('.popup__form');
-
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscape);
 }

@@ -26,7 +26,6 @@ const toggleButtonState = (inputList, buttonElement, options) => {
 
 
 const showInputError = (formElement, inputElement, options) => {
-  const activeErrorClass = options.activeErrorClass;
   const inputErrorClass = options.inputErrorClass;
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
@@ -37,7 +36,6 @@ const showInputError = (formElement, inputElement, options) => {
 
 
 const hideInputError = (formElement, inputElement, options) => {
-  const activeErrorClass = options.activeErrorClass;
   const inputErrorClass = options.inputErrorClass;
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
