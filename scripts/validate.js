@@ -1,7 +1,7 @@
 const optionsValidation = {
   buttonSubmitClass: 'popup__save-button',
   disableButtonClass: 'popup__save-button_disabled',
-  inputUntouchedClass: 'popup__input_untouched',
+  inputErrorClass: 'popup__input_type_error',
   inputSelector: 'popup__input',
 };
 
@@ -11,54 +11,55 @@ function hasInvalidInput(inputList) {
 };
 
 
-const toggleButtonState = (inputList, buttonElement, options) => {
+const disableButton = (buttonElement, options) => {
   const disableButtonClass = options.disableButtonClass;
 
-  if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(disableButtonClass);
-  }
-  else {
-    buttonElement.classList.remove(disableButtonClass);
-    buttonElement.disabled = false;
-  };
+  buttonElement.disabled = true;
+  buttonElement.classList.add(disableButtonClass);
+}
+
+
+const enableButton = (buttonElement, options) => {
+  const disableButtonClass = options.disableButtonClass;
+
+  buttonElement.classList.remove(disableButtonClass);
+  buttonElement.disabled = false;
+}
+
+
+const toggleButtonState = (inputList, buttonElement, options) => {
+  hasInvalidInput(inputList) ? disableButton(buttonElement, options) : enableButton(buttonElement, options);
 };
 
 
-const showInputError = (formElement, inputElement) => {
+const showInputError = (formElement, inputElement, options) => {
+  const inputErrorClass = options.inputErrorClass;
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
+  inputElement.classList.add(inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
   errorElement.hidden = false;
 }
 
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, options) => {
+  const inputErrorClass = options.inputErrorClass;
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
   errorElement.hidden = true;
   errorElement.textContent = '';
+  inputElement.classList.remove(inputErrorClass);
 }
 
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, options) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement);
+    showInputError(formElement, inputElement, options);
   }
   else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, options);
   };
 };
-
-
-const touchInput = (inputElement, options) => {
-  inputElement.classList.remove(options.inputUntouchedClass);
-}
-
-
-const untouchInput = (inputElement, options) => {
-  inputElement.classList.add(options.inputUntouchedClass);
-}
 
 
 const setEventListeners = (form, options) => {
@@ -67,21 +68,11 @@ const setEventListeners = (form, options) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      checkInputValidity(form, inputElement);
+      checkInputValidity(form, inputElement, options);
       toggleButtonState(inputList, buttonElement, options);
     });
   });
 };
-
-
-const handleTouchInput = (event) => {
-  const inputElement = event.target;
-  const formElement = inputElement.closest('.popup__form');
-  touchInput(inputElement, optionsValidation);
-  checkInputValidity(formElement, inputElement);
-  inputElement.removeEventListener('input', handleTouchInput);
-  inputElement.removeEventListener('focusout', handleTouchInput);
-}
 
 
 const resetFormValidation = (form, inputList, options) => {
@@ -89,11 +80,8 @@ const resetFormValidation = (form, inputList, options) => {
 
   inputList.forEach((inputElement) => {
     hideInputError(form, inputElement, options);
-    untouchInput(inputElement, options);
-    inputElement.addEventListener('input', handleTouchInput);
-    inputElement.addEventListener('focusout', handleTouchInput);
   });
-  toggleButtonState(inputList, buttonElement, options);
+  disableButton(buttonElement, options);
 }
 
 
