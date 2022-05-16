@@ -1,6 +1,5 @@
 const optionsValidation = {
   buttonSubmitClass: 'popup__save-button',
-  disableButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_type_error',
   inputSelector: 'popup__input',
 };
@@ -11,24 +10,18 @@ function hasInvalidInput(inputList) {
 };
 
 
-const disableButton = (buttonElement, options) => {
-  const disableButtonClass = options.disableButtonClass;
-
+const disableButton = (buttonElement) => {
   buttonElement.disabled = true;
-  buttonElement.classList.add(disableButtonClass);
 }
 
 
-const enableButton = (buttonElement, options) => {
-  const disableButtonClass = options.disableButtonClass;
-
-  buttonElement.classList.remove(disableButtonClass);
+const enableButton = (buttonElement) => {
   buttonElement.disabled = false;
 }
 
 
-const toggleButtonState = (inputList, buttonElement, options) => {
-  hasInvalidInput(inputList) ? disableButton(buttonElement, options) : enableButton(buttonElement, options);
+const toggleButtonState = (inputList, buttonElement) => {
+  hasInvalidInput(inputList) ? disableButton(buttonElement) : enableButton(buttonElement);
 };
 
 
@@ -69,7 +62,7 @@ const setEventListeners = (form, options) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(form, inputElement, options);
-      toggleButtonState(inputList, buttonElement, options);
+      toggleButtonState(inputList, buttonElement);
     });
   });
 };
@@ -92,7 +85,7 @@ const resetFormValidation = (form, inputList, options) => {
     // если он туда ничего не вводил, но "посетил" это поле.
     // Я надеюсь, что наставник на разборе проектных разъяснит минусы моего решения.
   });
-  disableButton(buttonElement, options);
+  disableButton(buttonElement);
 }
 
 
