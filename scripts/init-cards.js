@@ -30,3 +30,5 @@ const initialCards = [
     alt: 'Прямая дорога ведет к горе на Камчатке.'
   }
 ];
+
+export default initialCards;
