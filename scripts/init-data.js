@@ -31,4 +31,8 @@ const initialCards = [
   }
 ];
 
-export default initialCards;
+const formValidationOptions = {
+
+};
+
+export { initialCards, formValidationOptions };
