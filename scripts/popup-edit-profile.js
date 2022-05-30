@@ -1,4 +1,4 @@
-import FormValidator from './form-validator.js'
+import FormValidator from './FormValidator.js'
 import { closePopup, openPopup } from './index.js';
 import { optionsValidation } from './init-data.js';
 
