@@ -1,4 +1,4 @@
-import Card from './card.js';
+import Card from './Card.js';
 import { initialCards, optionsCard } from './init-data.js';
 
 const popups = document.querySelectorAll('.popup');
