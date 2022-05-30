@@ -1,4 +1,4 @@
-import { openImage } from "./popups.js"
+import { openImage } from "./popup-open-image.js"
 
 export default class Card {
   constructor(data, cardSelector) {

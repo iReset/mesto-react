@@ -31,8 +31,10 @@ const initialCards = [
   }
 ];
 
-const formValidationOptions = {
-
+const optionsValidation = {
+  buttonSubmitClass: 'popup__save-button',
+  inputErrorClass: 'popup__input_type_error',
+  inputSelector: 'popup__input',
 };
 
-export { initialCards, formValidationOptions };
+export { initialCards, optionsValidation };
