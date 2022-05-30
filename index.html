@@ -41,7 +41,7 @@
     <div class="popup__container">
       <button class="popup__close-button button" type="button" aria-label="Закрыть форму ввода."></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form  popup__profile" id="profile-edit" name="profile-edit">
+      <form class="popup__form  popup__profile" id="profile-edit" name="profile_edit">
         <fieldset class="popup__fieldset">
           <input class="popup__input popup__input_type_name" type="text" id="name" name="name" value=""
             placeholder="Имя" required minlength="2" maxlength="40">
@@ -59,7 +59,7 @@
     <div class="popup__container">
       <button class="popup__close-button button" type="button" aria-label="Закрыть форму ввода."></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form  popup__card" id="add-card" name="add-card">
+      <form class="popup__form  popup__card" id="add-card" name="add_card">
         <fieldset class="popup__fieldset">
           <input class="popup__input popup__input_type_title" type="text" id="title" name="title" value=""
             placeholder="Название" required minlength="2" maxlength="30">
@@ -96,10 +96,13 @@
     </li>
   </template>
 
-  <script src="./scripts/init-cards.js" type="module"></script>
-  <script src="./scripts/popups.js" type="module"></script>
-  <script src="./scripts/validate.js"></script>
+  <script src="./scripts/form-validator.js" type="module"></script>
+  <script src="./scripts/index.js" type="module"></script>
   <script src="./scripts/card.js" type="module"></script>
+  <script src="./scripts/init-data.js" type="module"></script>
+  <script src="./scripts/popup-add-card.js" type="module"></script>
+  <script src="./scripts/popup-edit-profile.js" type="module"></script>
+  <script src="./scripts/popup-open-image.js" type="module"></script>
 </body>
 
 </html>
