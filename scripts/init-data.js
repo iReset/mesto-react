@@ -31,10 +31,20 @@ const initialCards = [
   }
 ];
 
+const optionsCard = {
+  template: '#element',
+  classCard: '.element',
+  likeButton: '.element__like-button',
+  removeButton: '.element__remove-button',
+  likeButtonActive: 'element__like-button_active',
+  image: '.element__image',
+  caption: '.element__caption',
+};
+
 const optionsValidation = {
   buttonSubmitClass: 'popup__save-button',
   inputErrorClass: 'popup__input_type_error',
   inputSelector: 'popup__input',
 };
 
-export { initialCards, optionsValidation };
+export { initialCards, optionsCard, optionsValidation };

@@ -1,5 +1,5 @@
 import Card from './card.js';
-import { initialCards } from './init-data.js';
+import { initialCards, optionsCard } from './init-data.js';
 
 const popups = document.querySelectorAll('.popup');
 const buttonsClose = document.querySelectorAll('.popup__close-button');
@@ -29,7 +29,7 @@ export function closePopup(popup) {
 
 // Создает карточку
 export function createCard(data) {
-  const card = new Card(data, "#element");
+  const card = new Card(data, optionsCard);
   return card.createCard();
 }
 
