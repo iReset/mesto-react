@@ -6,12 +6,10 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const fieldAbout = document.querySelector('.profile__about');
 const fieldName = document.querySelector('.profile__name');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const formEditProfile = popupEditProfile.querySelector('.popup__profile');
+const formEditProfile = document.forms.profile_edit;
+const formEditValidation = new FormValidator(formEditProfile, optionsValidation);
 const inputAbout = document.querySelector('.popup__input_type_about');
 const inputName = document.querySelector('.popup__input_type_name');
-
-const formEditValidation = new FormValidator(document.forms.profile_edit, optionsValidation);
-formEditValidation.enableValidation();
 
 // "Открывает" окно редактирования профиля
 function openPopupEditProfile() {
@@ -31,3 +29,4 @@ function saveEditProfile(event) {
 
 buttonEdit.addEventListener('click', openPopupEditProfile);
 formEditProfile.addEventListener('submit', saveEditProfile);
+formEditValidation.enableValidation();

@@ -4,12 +4,10 @@ import { optionsValidation } from './init-data.js';
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const formAdd = popupAddCard.querySelector('.popup__card');
+const formAdd = document.forms.add_card;
+const formAddValidation = new FormValidator(formAdd, optionsValidation);
 const inputTitle = document.querySelector('.popup__input_type_title');
 const inputLink = document.querySelector('.popup__input_type_link');
-
-const formAddValidation = new FormValidator(document.forms.add_card, optionsValidation);
-formAddValidation.enableValidation();
 
 // "Открывает" окно добавления карточки
 function openPopupAddCard() {
@@ -31,4 +29,5 @@ function saveAddCard(event) {
 }
 
 buttonAdd.addEventListener('click', openPopupAddCard);
-popupAddCard.addEventListener('submit', saveAddCard);
+formAdd.addEventListener('submit', saveAddCard);
+formAddValidation.enableValidation();
