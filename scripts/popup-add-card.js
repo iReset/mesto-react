@@ -28,6 +28,8 @@ function saveAddCard(event) {
   closePopup(popupAddCard);
 }
 
-buttonAdd.addEventListener('click', openPopupAddCard);
-formAdd.addEventListener('submit', saveAddCard);
-formAddValidation.enableValidation();
+export default function initAddCard() {
+  buttonAdd.addEventListener('click', openPopupAddCard);
+  formAdd.addEventListener('submit', saveAddCard);
+  formAddValidation.enableValidation();
+}

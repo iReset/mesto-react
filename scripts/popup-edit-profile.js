@@ -27,6 +27,8 @@ function saveEditProfile(event) {
   closePopup(popupEditProfile);
 }
 
-buttonEdit.addEventListener('click', openPopupEditProfile);
-formEditProfile.addEventListener('submit', saveEditProfile);
-formEditValidation.enableValidation();
+export default function initPopupEditProfile() {
+  buttonEdit.addEventListener('click', openPopupEditProfile);
+  formEditProfile.addEventListener('submit', saveEditProfile);
+  formEditValidation.enableValidation();
+}
