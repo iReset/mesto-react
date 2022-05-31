@@ -8,38 +8,51 @@ export default class Card {
     this._options = options;
     this._template = this._getTemplateElement(options.template);
     this._element = null;
+    this._elementCaption = null;
     this._elementImage = null;
+    this._elementLike = null;
+    this._elementRemove = null;
   }
 
   _getTemplateElement(cardSelector) {
     return document.querySelector(cardSelector).content.querySelector(this._options.classCard);
   }
 
-  _setEventListeners() {
-    const elementLike = this._element.querySelector(this._options.likeButton);
-    const elementRemove = this._element.querySelector(this._options.removeButton);
-
-    this._elementImage.addEventListener("click", () =>
-      openImage({
-        link: this._imageLink,
-        alt: this._imageAlt,
-        name: this._caption,
-      }));
-    elementLike.addEventListener("click", () =>
-      elementLike.classList.toggle(this._options.likeButtonActive)
-    );
-    elementRemove.addEventListener("click", () => {
-      this._element.remove();
-      this._element = null;
+  _openImage() {
+    openImage({
+      link: this._imageLink,
+      alt: this._imageAlt,
+      name: this._caption,
     });
+  }
+
+  _toggleLike() {
+    this._elementLike.classList.toggle(this._options.likeButtonActive);
+  }
+
+  _removeCard() {
+    this._element.remove();
+    this._element = null;
+    this._elementCaption = null;
+    this._elementImage = null;
+    this._elementLike = null;
+    this._elementRemove = null;
+  }
+
+  _setEventListeners() {
+    this._elementImage.addEventListener("click", () => this._openImage());
+    this._elementLike.addEventListener("click", () => this._toggleLike());
+    this._elementRemove.addEventListener("click", () => this._removeCard());
   }
 
   createCard() {
     this._element = this._template.cloneNode(true);
+    this._elementCaption = this._element.querySelector(this._options.caption);
     this._elementImage = this._element.querySelector(this._options.image);
-    const elementCaption = this._element.querySelector(this._options.caption);
+    this._elementLike = this._element.querySelector(this._options.likeButton);
+    this._elementRemove = this._element.querySelector(this._options.removeButton);
 
-    elementCaption.textContent = this._caption;
+    this._elementCaption.textContent = this._caption;
     this._elementImage.src = this._imageLink;
     this._elementImage.alt = this._imageAlt;
 
