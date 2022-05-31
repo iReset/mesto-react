@@ -1,5 +1,7 @@
 import Card from './Card.js';
 import { initialCards, optionsCard } from './init-data.js';
+import initPopupEditProfile from './popup-edit-profile.js';
+import initPopupAddCard from './popup-add-card.js';
 
 const popups = document.querySelectorAll('.popup');
 const buttonsClose = document.querySelectorAll('.popup__close-button');
@@ -49,3 +51,6 @@ popups.forEach(popup => {
     }
   });
 })
+
+initPopupEditProfile();
+initPopupAddCard();
