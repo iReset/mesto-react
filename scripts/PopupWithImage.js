@@ -1,5 +1,5 @@
 export default class PopupWithImage extends Popup {
-  constructor(selector, { captionSelector, imageSelector }) {
+  constructor({ selector, captionSelector, imageSelector }) {
     super(selector);
     this._caption = this._popup.querySelector(captionSelector);
     this._image = this._popup.querySelector(imageSelector);
