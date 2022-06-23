@@ -1,33 +1,49 @@
 import Card from './Card.js';
 import Section from './Section.js';
-import { initialCards, optionsCard } from './init-data.js';
-import initPopupEditProfile from './popup-edit-profile.js';
-import initPopupAddCard from './popup-add-card.js';
+import {
+  buttonAdd,
+  buttonEdit,
+  fieldAbout,
+  fieldName,
+  initialCards,
+  optionsCard,
+  optionsPopupWithForm,
+  optionsPopupWithImage,
+  popupAddCardSelector,
+  popupEditProfileSelector,
+} from './init-data.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
 
-const popups = document.querySelectorAll('.popup');
-const buttonsClose = document.querySelectorAll('.popup__close-button');
 
-
-// Обрабатывает нажатие Escape
-function handleEscape(event) {
-  if (event.key !== 'Escape') {
-    return;
-  }
-  const popup = document.querySelector('.popup_opened');
-  closePopup(popup);
+// Попапы с формой
+function handleSubmitAddCard({ title: name, link }) {
+  createCard({name, link});
 }
 
-// "Открывает" всплывающее окно
-export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEscape);
+const popupAddCard = new PopupWithForm(
+  popupAddCardSelector,
+  optionsPopupWithForm,
+  handleSubmitAddCard,
+);
+popupAddCard.setEventListeners();
+
+function handleSubmitEditProfile({ name, about }) {
+  fieldName.textContent = name.trim();
+  fieldAbout.textContent = about.trim();
 }
 
-// "Закрывает" всплывающее окно
-export function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscape);
-}
+const popupEditProfile = new PopupWithForm(
+  popupEditProfileSelector,
+  optionsPopupWithForm,
+  handleSubmitEditProfile,
+);
+popupEditProfile.setEventListeners();
+
+
+// Попап с изображением
+const popupWithImage = new PopupWithImage(optionsPopupWithImage);
+popupWithImage.setEventListeners();
 
 
 // Работа с карточками
@@ -37,27 +53,17 @@ const cardSection = new Section(
     renderer: createCard,
   },
   '.elements__list',
-);
-export function createCard(data) {
-  const card = new Card(data, optionsCard);
+)
+
+function openImage(card) {
+  popupWithImage.open(card);
+}
+
+function createCard(data) {
+  const card = new Card(data, optionsCard, openImage);
   cardSection.addItem(card.createCard());
 }
 
+buttonAdd.addEventListener('click', popupAddCard.open.bind(popupAddCard));
+buttonEdit.addEventListener('click', popupEditProfile.open.bind(popupEditProfile));
 cardSection.renderItems();
-
-
-buttonsClose.forEach(button => {
-  const popup = button.closest(".popup");
-  button.addEventListener('click', () => closePopup(popup));
-});
-
-popups.forEach(popup => {
-  popup.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(popup);
-    }
-  });
-})
-
-initPopupEditProfile();
-initPopupAddCard();
