@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Карачаевск',
     link: './images/elements/karachaevsk.min.jpg',
@@ -31,7 +31,7 @@ const initialCards = [
   }
 ];
 
-const optionsCard = {
+export const optionsCard = {
   template: '#element',
   classCard: '.element',
   likeButton: '.element__like-button',
@@ -41,16 +41,15 @@ const optionsCard = {
   caption: '.element__caption',
 };
 
-const optionsValidation = {
+export const optionsValidation = {
   buttonSubmitClass: 'popup__save-button',
   inputErrorClass: 'popup__input_type_error',
   inputSelector: 'popup__input',
 };
 
-const optionsPopupWithImage = {
+export const optionsPopupWithImage = {
   selector: '.popup_type_open-image',
   captionSelector: '.popup__caption',
   imageSelector: '.popup__image',
 }
 
-export { initialCards, optionsCard, optionsPopupWithImage, optionsValidation };
