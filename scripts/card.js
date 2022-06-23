@@ -1,10 +1,9 @@
-import { openImage } from "./popup-open-image.js"
-
 export default class Card {
-  constructor(data, options) {
+  constructor(data, options, handleCardClick) {
     this._caption = data.name;
     this._imageLink = data.link;
     this._imageAlt = data.alt;
+    this._handleCardClick = handleCardClick;
     this._options = options;
     this._template = this._getTemplateElement(options.template);
     this._element = null;
@@ -40,7 +39,11 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._elementImage.addEventListener("click", () => this._openImage());
+    this._elementImage.addEventListener("click", () => this._handleCardClick({
+      link: this._imageLink,
+      alt: this._imageAlt,
+      name: this._caption,
+    }));
     this._elementLike.addEventListener("click", () => this._toggleLike());
     this._elementRemove.addEventListener("click", () => this._removeCard());
   }
