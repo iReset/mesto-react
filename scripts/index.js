@@ -40,9 +40,14 @@ const cardSection = new Section(
     renderer: createCard,
   },
   '.elements__list',
-);
+)
+
+function openImage(card) {
+  popupWithImage.open(card);
+}
+
 export function createCard(data) {
-  const card = new Card(data, optionsCard);
+  const card = new Card(data, optionsCard, openImage);
   cardSection.addItem(card.createCard());
 }
 
