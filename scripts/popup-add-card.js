@@ -1,5 +1,5 @@
-import FormValidator from './FormValidator.js'
-import { closePopup, createCard, elementsList, openPopup } from './index.js';
+import FormValidator from './FormValidator.js';
+import { closePopup, createCard, openPopup } from './index.js';
 import { optionsValidation } from './init-data.js';
 
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -19,12 +19,11 @@ function openPopupAddCard() {
 // Обрабатывает оправку формы добавления карточки
 function saveAddCard(event) {
   event.preventDefault();
-  const cardElement = createCard({
+  createCard({
     name: inputTitle.value,
     alt: inputTitle.value,
     link: inputLink.value
   });
-  elementsList.prepend(cardElement);
   closePopup(popupAddCard);
 }
 
