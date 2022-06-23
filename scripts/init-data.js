@@ -53,3 +53,14 @@ export const optionsPopupWithImage = {
   imageSelector: '.popup__image',
 }
 
+export const optionsPopupWithForm = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+}
+
+export const buttonAdd = document.querySelector('.profile__add-button');
+export const buttonEdit = document.querySelector('.profile__edit-button');
+export const fieldAbout = document.querySelector('.profile__about');
+export const fieldName = document.querySelector('.profile__name');
+export const popupAddCardSelector = '.popup_type_add-card';
+export const popupEditProfileSelector = '.popup_type_edit-profile';
