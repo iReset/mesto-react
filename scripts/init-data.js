@@ -47,4 +47,10 @@ const optionsValidation = {
   inputSelector: 'popup__input',
 };
 
-export { initialCards, optionsCard, optionsValidation };
+const optionsPopupWithImage = {
+  selector: '.popup_type_open-image',
+  captionSelector: '.popup__caption',
+  imageSelector: '.popup__image',
+}
+
+export { initialCards, optionsCard, optionsPopupWithImage, optionsValidation };

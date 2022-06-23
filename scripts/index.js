@@ -1,11 +1,9 @@
 import Card from './Card.js';
 import Section from './Section.js';
-import { initialCards, optionsCard } from './init-data.js';
+import { initialCards, optionsCard, optionsPopupWithImage } from './init-data.js';
 import initPopupEditProfile from './popup-edit-profile.js';
 import initPopupAddCard from './popup-add-card.js';
-
-const popups = document.querySelectorAll('.popup');
-const buttonsClose = document.querySelectorAll('.popup__close-button');
+import PopupWithImage from './PopupWithImage.js';
 
 
 // Обрабатывает нажатие Escape
@@ -30,6 +28,11 @@ export function closePopup(popup) {
 }
 
 
+// Попап с изображением
+const popupWithImage = new PopupWithImage(optionsPopupWithImage);
+popupWithImage.setEventListeners();
+
+
 // Работа с карточками
 const cardSection = new Section(
   {
@@ -45,19 +48,6 @@ export function createCard(data) {
 
 cardSection.renderItems();
 
-
-buttonsClose.forEach(button => {
-  const popup = button.closest(".popup");
-  button.addEventListener('click', () => closePopup(popup));
-});
-
-popups.forEach(popup => {
-  popup.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(popup);
-    }
-  });
-})
 
 initPopupEditProfile();
 initPopupAddCard();
