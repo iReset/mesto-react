@@ -17,14 +17,6 @@ export default class Card {
     return document.querySelector(cardSelector).content.querySelector(this._options.classCard);
   }
 
-  _openImage() {
-    openImage({
-      link: this._imageLink,
-      alt: this._imageAlt,
-      name: this._caption,
-    });
-  }
-
   _toggleLike() {
     this._elementLike.classList.toggle(this._options.likeButtonActive);
   }
