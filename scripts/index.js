@@ -1,11 +1,11 @@
 import Card from './Card.js';
+import Section from './Section.js';
 import { initialCards, optionsCard } from './init-data.js';
 import initPopupEditProfile from './popup-edit-profile.js';
 import initPopupAddCard from './popup-add-card.js';
 
 const popups = document.querySelectorAll('.popup');
 const buttonsClose = document.querySelectorAll('.popup__close-button');
-export const elementsList = document.querySelector('.elements__list');
 
 
 // Обрабатывает нажатие Escape
@@ -29,15 +29,22 @@ export function closePopup(popup) {
   document.removeEventListener('keydown', handleEscape);
 }
 
-// Создает карточку
+
+// Работа с карточками
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: createCard,
+  },
+  '.elements__list',
+);
 export function createCard(data) {
   const card = new Card(data, optionsCard);
-  return card.createCard();
+  cardSection.addItem(card.createCard());
 }
 
-initialCards.forEach(card => {
-  elementsList.append(createCard(card));
-});
+cardSection.renderItems();
+
 
 buttonsClose.forEach(button => {
   const popup = button.closest(".popup");
