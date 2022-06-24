@@ -1,6 +1,6 @@
 import FormValidator from './FormValidator.js';
 import Popup from './Popup.js';
-import { optionsValidation } from './init-data.js';
+import { optionsValidation } from '../utils/constants.js';
 
 export default class PopupWithForm extends Popup {
   constructor(selector, { formSelector, inputSelector }, handleSubmit, getInitial) {
