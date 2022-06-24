@@ -22,7 +22,7 @@ const userInfo = new UserInfo(optionsUserInfo);
 
 // Попапы с формой
 function handleSubmitAddCard({ title: name, link }) {
-  createCard({name, link});
+  createCard({ name, link });
 }
 
 const popupAddCard = new PopupWithForm(
