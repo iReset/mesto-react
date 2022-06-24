@@ -25,6 +25,9 @@ export default class Card {
     this._element.remove();
     this._element = null;
     this._elementCaption = null;
+    // С Вашего позволения я все же оставлю зануление.
+    // При текущей реализации класса это не важно, но я думаю, что это может всплыть при дальнейшем расширении класса.
+    // В какой-то момент в какой-нибудь новой функции произойдет обращение к удаленному объекту. Путь лучше будут null.
     this._elementImage = null;
     this._elementLike = null;
     this._elementRemove = null;
