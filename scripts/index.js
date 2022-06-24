@@ -1,4 +1,6 @@
 import Card from './Card.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
 import Section from './Section.js';
 import UserInfo from './UserInfo.js';
 import {
@@ -12,8 +14,6 @@ import {
   popupAddCardSelector,
   popupEditProfileSelector,
 } from './init-data.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
 
 
 // Информация о пользователе
