@@ -1,5 +1,5 @@
-const altai_mountains = new URL('../images/elements/altai-mountains.min.jpg', import.meta.url);
-const ancestral_trail = new URL('../images/elements/ancestral-trail.min.jpg', import.meta.url);
+const altaiMountains = new URL('../images/elements/altai-mountains.min.jpg', import.meta.url);
+const ancestralTrail = new URL('../images/elements/ancestral-trail.min.jpg', import.meta.url);
 const dombai = new URL('../images/elements/dombai.min.jpg', import.meta.url);
 const elbrus = new URL('../images/elements/elbrus.min.jpg', import.meta.url);
 const kamchatka = new URL('../images/elements/kamchatka.min.jpg', import.meta.url);
@@ -13,12 +13,12 @@ export const initialCards = [
   },
   {
     name: 'Тропа Предков',
-    link: ancestral_trail,
+    link: ancestralTrail,
     alt: 'Тропа Предков в Хакассии на фоне хребта и реки.'
   },
   {
     name: 'Горы Алтая',
-    link: altai_mountains,
+    link: altaiMountains,
     alt: 'Река в горах Алтая.'
   },
   {
