@@ -1,20 +1,23 @@
 import Card from './Card.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
 import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 import {
   buttonAdd,
   buttonEdit,
-  fieldAbout,
-  fieldName,
   initialCards,
   optionsCard,
   optionsPopupWithForm,
   optionsPopupWithImage,
+  optionsUserInfo,
   popupAddCardSelector,
   popupEditProfileSelector,
 } from './init-data.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
 
+
+// Информация о пользователе
+const userInfo = new UserInfo(optionsUserInfo);
 
 // Попапы с формой
 function handleSubmitAddCard({ title: name, link }) {
@@ -29,14 +32,17 @@ const popupAddCard = new PopupWithForm(
 popupAddCard.setEventListeners();
 
 function handleSubmitEditProfile({ name, about }) {
-  fieldName.textContent = name.trim();
-  fieldAbout.textContent = about.trim();
+  userInfo.setUserInfo({
+    name: name.trim(),
+    about: about.trim(),
+  })
 }
 
 const popupEditProfile = new PopupWithForm(
   popupEditProfileSelector,
   optionsPopupWithForm,
   handleSubmitEditProfile,
+  userInfo.getUserInfo.bind(userInfo),
 );
 popupEditProfile.setEventListeners();
 
