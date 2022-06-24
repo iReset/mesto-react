@@ -13,6 +13,7 @@ import {
   optionsUserInfo,
   popupAddCardSelector,
   popupEditProfileSelector,
+  popupOpenImageSelector,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -49,7 +50,7 @@ popupEditProfile.setEventListeners();
 
 
 // Попап с изображением
-const popupWithImage = new PopupWithImage(optionsPopupWithImage);
+const popupWithImage = new PopupWithImage(popupOpenImageSelector, optionsPopupWithImage);
 popupWithImage.setEventListeners();
 
 
