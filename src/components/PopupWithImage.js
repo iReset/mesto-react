@@ -7,13 +7,6 @@ export default class PopupWithImage extends Popup {
     this._image = this._popup.querySelector(imageSelector);
   }
 
-  open({ link, alt = name, name }) {
-    this._image.src = link;
-    this._image.alt = alt;
-    this._caption.textContent = name;
-    super.open();
-  }
-
   clear() {
     this._image.src = '';
     this._image.alt = '';
@@ -23,5 +16,12 @@ export default class PopupWithImage extends Popup {
   close() {
     super.close();
     this.clear();
+  }
+
+  open({ link, alt = name, name }) {
+    this._image.src = link;
+    this._image.alt = alt;
+    this._caption.textContent = name;
+    super.open();
   }
 }
