@@ -1,32 +1,39 @@
+const altai_mountains = new URL('../images/elements/altai-mountains.min.jpg', import.meta.url);
+const ancestral_trail = new URL('../images/elements/ancestral-trail.min.jpg', import.meta.url);
+const dombai = new URL('../images/elements/dombai.min.jpg', import.meta.url);
+const elbrus = new URL('../images/elements/elbrus.min.jpg', import.meta.url);
+const kamchatka = new URL('../images/elements/kamchatka.min.jpg', import.meta.url);
+const karachaevsk = new URL('../images/elements/karachaevsk.min.jpg', import.meta.url);
+
 export const initialCards = [
   {
     name: 'Карачаевск',
-    link: './images/elements/karachaevsk.min.jpg',
+    link: karachaevsk,
     alt: 'Церковь в Карачаевске на фоне гор.'
   },
   {
     name: 'Тропа Предков',
-    link: './images/elements/ancestral-trail.min.jpg',
+    link: ancestral_trail,
     alt: 'Тропа Предков в Хакассии на фоне хребта и реки.'
   },
   {
     name: 'Горы Алтая',
-    link: './images/elements/altai-mountains.min.jpg',
+    link: altai_mountains,
     alt: 'Река в горах Алтая.'
   },
   {
     name: 'Эльбрус',
-    link: './images/elements/elbrus.min.jpg',
+    link: elbrus,
     alt: 'Небольшая речка в районе Эльбруса.'
   },
   {
     name: 'Домбай',
-    link: './images/elements/dombai.min.jpg',
+    link: dombai,
     alt: 'Вид на горы горнолыжного курорта Домбай.'
   },
   {
     name: 'Камчатка',
-    link: './images/elements/kamchatka.min.jpg',
+    link: kamchatka,
     alt: 'Прямая дорога ведет к горе на Камчатке.'
   }
 ];

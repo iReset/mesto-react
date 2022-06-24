@@ -1,8 +1,8 @@
-import Card from './Card.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 import {
   buttonAdd,
   buttonEdit,
@@ -13,7 +13,8 @@ import {
   optionsUserInfo,
   popupAddCardSelector,
   popupEditProfileSelector,
-} from './init-data.js';
+} from '../utils/constants.js';
+import './index.css';
 
 
 // Информация о пользователе
@@ -21,7 +22,7 @@ const userInfo = new UserInfo(optionsUserInfo);
 
 // Попапы с формой
 function handleSubmitAddCard({ title: name, link }) {
-  createCard({name, link});
+  createCard({ name, link });
 }
 
 const popupAddCard = new PopupWithForm(
