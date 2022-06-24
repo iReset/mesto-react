@@ -7,7 +7,6 @@
   <meta name="description" content="Проектная работа. Спринт 5. Курс Веб-разработчик. Школа Яндекс Практикум.">
   <meta name="keywords" content="js, html5, css3, BEM, Nested">
   <meta name="author" content="Alexander Ganyushkin aka iReset">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
 </head>
 
@@ -18,7 +17,7 @@
 
   <main class="main">
     <section class="profile root__profile">
-      <img class="profile__avatar" src="./images/avatar.min.jpg" alt="Аватар пользователя.">
+      <img class="profile__avatar" src="<%=require('./images/avatar.min.jpg')%>" alt="Аватар пользователя.">
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__about">Исследователь океана</p>
@@ -77,9 +76,9 @@
     <figure class="popup__container popup__container_type_image">
       <div class="popup__image-block">
         <button class="popup__close-button button" type="button" aria-label="Закрыть изображение."></button>
-        <img class="popup__image" src="./images/elements/dombai.min.jpg" alt="" />
+        <img class="popup__image" src="#" alt="" />
       </div>
-      <figcaption class="popup__caption">Описание</figcaption>
+      <figcaption class="popup__caption"></figcaption>
     </figure>
   </div>
 
@@ -95,8 +94,6 @@
       </div>
     </li>
   </template>
-
-  <script src="./scripts/index.js" type="module"></script>
 </body>
 
 </html>
