@@ -14,6 +14,7 @@ import {
   popupAddCardSelector,
   popupEditProfileSelector,
 } from '../utils/constants.js';
+import './index.css';
 
 
 // Информация о пользователе
