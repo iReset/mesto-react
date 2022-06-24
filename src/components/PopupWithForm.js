@@ -13,6 +13,11 @@ export default class PopupWithForm extends Popup {
     this._validator.enableValidation();
   }
 
+  close() {
+    super.close();
+    this._form.reset();
+  }
+
   open() {
     this._validator.resetValidation();
     if (this._getInitial) {
@@ -24,11 +29,6 @@ export default class PopupWithForm extends Popup {
       });
       }
     super.open();
-  }
-
-  close() {
-    super.close();
-    this._form.reset();
   }
 
   setEventListeners() {
