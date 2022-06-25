@@ -1,4 +1,5 @@
 import Card from '../components/Card.js';
+import FormValidator from './FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
@@ -11,6 +12,7 @@ import {
   optionsPopupWithForm,
   optionsPopupWithImage,
   optionsUserInfo,
+  optionsValidation,
   popupAddCardSelector,
   popupEditProfileSelector,
   popupOpenImageSelector,
@@ -32,6 +34,8 @@ const popupAddCard = new PopupWithForm(
   handleSubmitAddCard,
 );
 popupAddCard.setEventListeners();
+const validatorAddCard = new FormValidator(popupAddCard.getForm(), optionsValidation);
+validatorAddCard.enableValidation();
 
 function handleSubmitEditProfile({ name, about }) {
   userInfo.setUserInfo({
@@ -47,6 +51,8 @@ const popupEditProfile = new PopupWithForm(
   userInfo.getUserInfo.bind(userInfo),
 );
 popupEditProfile.setEventListeners();
+const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optionsValidation);
+validatorEditProfile.enableValidation();
 
 
 // Попап с изображением
@@ -72,6 +78,12 @@ function createCard(data) {
   cardSection.addItem(card.createCard());
 }
 
-buttonAdd.addEventListener('click', popupAddCard.open.bind(popupAddCard));
-buttonEdit.addEventListener('click', popupEditProfile.open.bind(popupEditProfile));
+buttonAdd.addEventListener('click', _ => {
+  validatorAddCard.resetValidation();
+  popupAddCard.open.bind(popupAddCard)();
+});
+buttonEdit.addEventListener('click', _ => {
+  validatorEditProfile.resetValidation();
+  popupEditProfile.open.bind(popupEditProfile)
+});
 cardSection.renderItems();
