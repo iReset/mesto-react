@@ -7,6 +7,7 @@ import UserInfo from '../components/UserInfo.js';
 import {
   buttonAdd,
   buttonEdit,
+  cardListSelector,
   initialCards,
   optionsCard,
   optionsPopupWithForm,
@@ -66,7 +67,7 @@ const cardSection = new Section(
     items: initialCards,
     renderer: createCard,
   },
-  '.elements__list',
+  cardListSelector,
 )
 
 function openImage(card) {
