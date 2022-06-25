@@ -19,28 +19,25 @@ export default class PopupWithForm extends Popup {
   }
 
   open() {
-    // Неоднозначно понял Ваше замечание.
-    // 1. Вынес FormValidator из класса. Забыл про требование не использовать импорты кроме как для наследования.
-    //    Очень уж красиво валидатор ложился в этот класс.
-    // 2. Но в open() осталась инициализация полей при открытии. Используется в форме редактирования информации
-    //    о пользователе. Технически ее тоже можно вынести из класса. Но дальше я вижу два варианта.
-    //    Либо запрашивать у класса список полей для инициализации и заполнять их напрямую.
-    //    Либо с помощью отдельной функции передавать данные для инициализации в класс и класс сам заполнит поля.
-    //    Мне кажется, оба решения усложняют код.
-    if (this._getInitial) {
-      const data = this._getInitial();
-      this._inputList.forEach(input => {
-        if (data[input.name]) {
-          input.value = data[input.name];
-        }
-      });
-    }
+    this._initFields();
     super.open();
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', this._submit.bind(this));
+  }
+
+  _initFields() {
+    if (!this._getInitial)
+      return;
+
+    const data = this._getInitial();
+    this._inputList.forEach(input => {
+      if (data[input.name]) {
+        input.value = data[input.name];
+      }
+    });
   }
 
   _getInputValues() {

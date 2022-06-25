@@ -17,13 +17,8 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.addEventListener('mousedown', evt => {
-      // Спасибо за предложенную оптимизацию. Мне действительно не приходило в голову такое решение.
-      // Но конкретно в данном случае мне психологически комфортнее, когда форма закрывается по _нажатию_ мышкой
-      // в пустой области, а не по _отпусканию_. В то же время кнопка, imho, должна реагировать на _отпускание_,
-      // поскольку кнопка визуально реагирует на нажатие.
-      // Конечно, это сугубо личное мнение.
       if (evt.target.classList.contains('popup')) {
-        this.close.bind(this)();
+        this.close();
       }
     });
     this._button.addEventListener('click', this.close.bind(this));
