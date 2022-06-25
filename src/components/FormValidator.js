@@ -18,9 +18,6 @@ export default class FormValidator {
 
   _enableButton() {
     this._buttonElement.disabled = false;
-    // Я риску потратить впустую одно из четырех ревью, но я не понимаю, зачем добавлять дополнительный класс,
-    // если на кнопках Сохранить всех форм помимо класса .popup__save_button висит CSS-класс .button, который
-    // имеет псевдокласс :disabled, описывающий вид неактивной кнопки (blocks/button/button.css:20).
   }
 
   _toggleButtonState() {

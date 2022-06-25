@@ -1,6 +1,4 @@
-import FormValidator from './FormValidator.js';
 import Popup from './Popup.js';
-import { optionsValidation } from '../utils/constants.js';
 
 export default class PopupWithForm extends Popup {
   constructor(selector, { formSelector, inputSelector }, handleSubmit, getInitial) {
@@ -9,8 +7,10 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popup.querySelectorAll(inputSelector);
     this._handleSubmit = handleSubmit;
     this._getInitial = getInitial;
-    this._validator = new FormValidator(this._form, optionsValidation);
-    this._validator.enableValidation();
+  }
+
+  getForm() {
+    return this._form;
   }
 
   close() {
@@ -19,7 +19,14 @@ export default class PopupWithForm extends Popup {
   }
 
   open() {
-    this._validator.resetValidation();
+    // Неоднозначно понял Ваше замечание.
+    // 1. Вынес FormValidator из класса. Забыл про требование не использовать импорты кроме как для наследования.
+    //    Очень уж красиво валидатор ложился в этот класс.
+    // 2. Но в open() осталась инициализация полей при открытии. Используется в форме редактирования информации
+    //    о пользователе. Технически ее тоже можно вынести из класса. Но дальше я вижу два варианта.
+    //    Либо запрашивать у класса список полей для инициализации и заполнять их напрямую.
+    //    Либо с помощью отдельной функции передавать данные для инициализации в класс и класс сам заполнит поля.
+    //    Мне кажется, оба решения усложняют код.
     if (this._getInitial) {
       const data = this._getInitial();
       this._inputList.forEach(input => {
@@ -27,7 +34,7 @@ export default class PopupWithForm extends Popup {
           input.value = data[input.name];
         }
       });
-      }
+    }
     super.open();
   }
 
