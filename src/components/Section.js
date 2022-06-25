@@ -9,12 +9,15 @@ export default class Section {
     this._container.prepend(element);
   }
 
-  clear() {
-    this._container.innerHTML = '';
+  renderItems() {
+    this._clear();
+    this._items.forEach(item => this._renderer(item));
   }
 
-  renderItems() {
-    this.clear();
-    this._items.forEach(item => this._renderer(item));
+  _clear() {
+    // Данный метод используется в renderItems. Если не очищать контейнер при повторной отрисовке элементов
+    // (возможно, в будущем), то элементы продублируются.
+    // Но этот метод не должен быть публичным. Сделал его приватным.
+    this._container.innerHTML = '';
   }
 }
