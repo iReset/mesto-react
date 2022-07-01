@@ -77,4 +77,6 @@ export const popupEditProfileSelector = '.popup_type_edit-profile';
 export const popupOpenImageSelector = '.popup_type_open-image';
 
 export const token = `${process.env.TOKEN}`;
-export const url = `https://nomoreparties.co/v1/${process.env.COHORT}/users/me`;
+const urlApi = 'https://nomoreparties.co/v1'
+const cohort = `${process.env.COHORT}`
+export const urlMe = `${urlApi}/${cohort}/users/me`;
