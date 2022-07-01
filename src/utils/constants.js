@@ -75,3 +75,6 @@ export const cardListSelector = '.elements__list';
 export const popupAddCardSelector = '.popup_type_add-card';
 export const popupEditProfileSelector = '.popup_type_edit-profile';
 export const popupOpenImageSelector = '.popup_type_open-image';
+
+export const token = `${process.env.TOKEN}`;
+export const url = `https://nomoreparties.co/v1/${process.env.COHORT}/users/me`;
