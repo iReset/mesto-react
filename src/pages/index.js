@@ -18,7 +18,7 @@ import {
   popupEditProfileSelector,
   popupOpenImageSelector,
   token,
-  url,
+  urlMe,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -91,7 +91,7 @@ buttonEdit.addEventListener('click', _ => {
 });
 cardSection.renderItems();
 
-fetch(url, {
+fetch(urlMe, {
   headers: {
     authorization: token,
   }
