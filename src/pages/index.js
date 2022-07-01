@@ -17,6 +17,8 @@ import {
   popupAddCardSelector,
   popupEditProfileSelector,
   popupOpenImageSelector,
+  token,
+  url,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -88,3 +90,18 @@ buttonEdit.addEventListener('click', _ => {
   popupEditProfile.open.bind(popupEditProfile)
 });
 cardSection.renderItems();
+
+fetch(url, {
+  headers: {
+    authorization: token,
+  }
+})
+  .then(res => {
+    if (res.status == 200)
+      return res.json();
+    return Promise.reject(`А вот и ошибочка: ${res.status}`);
+  })
+  .then(result => {
+    userInfo.setUserInfo(result).bind(userInfo);
+  })
+  .catch(err => console.log(err));
