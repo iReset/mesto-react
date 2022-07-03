@@ -8,7 +8,6 @@ import {
   buttonAdd,
   buttonEdit,
   cardListSelector,
-  initialCards,
   optionsCard,
   optionsPopupWithForm,
   optionsPopupWithImage,
@@ -19,6 +18,7 @@ import {
   popupOpenImageSelector,
   token,
   urlMe,
+  urlCards,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -66,11 +66,25 @@ popupWithImage.setEventListeners();
 // Работа с карточками
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: createCard,
   },
   cardListSelector,
 )
+
+fetch(urlCards, {
+  headers: {
+    authorization: token,
+  }
+})
+  .then(res => {
+    if (res.status == 200)
+      return res.json();
+    return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
+  })
+  .then(result => {
+    cardSection.renderItems(result);
+  })
+  .catch(err => console.log(err));
 
 function openImage(card) {
   popupWithImage.open(card);
@@ -89,7 +103,6 @@ buttonEdit.addEventListener('click', _ => {
   validatorEditProfile.resetValidation();
   popupEditProfile.open.bind(popupEditProfile)
 });
-cardSection.renderItems();
 
 fetch(urlMe, {
   headers: {
