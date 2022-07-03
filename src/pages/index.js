@@ -101,7 +101,7 @@ buttonAdd.addEventListener('click', _ => {
 });
 buttonEdit.addEventListener('click', _ => {
   validatorEditProfile.resetValidation();
-  popupEditProfile.open.bind(popupEditProfile)
+  popupEditProfile.open.bind(popupEditProfile)()
 });
 
 fetch(urlMe, {
