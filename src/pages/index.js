@@ -8,7 +8,6 @@ import {
   buttonAdd,
   buttonEdit,
   cardListSelector,
-  initialCards,
   optionsCard,
   optionsPopupWithForm,
   optionsPopupWithImage,
@@ -66,7 +65,6 @@ popupWithImage.setEventListeners();
 // Работа с карточками
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: createCard,
   },
   cardListSelector,
@@ -89,7 +87,6 @@ buttonEdit.addEventListener('click', _ => {
   validatorEditProfile.resetValidation();
   popupEditProfile.open.bind(popupEditProfile)
 });
-cardSection.renderItems();
 
 fetch(urlMe, {
   headers: {
