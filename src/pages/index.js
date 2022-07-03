@@ -18,6 +18,7 @@ import {
   popupOpenImageSelector,
   token,
   urlMe,
+  urlCards,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -69,6 +70,21 @@ const cardSection = new Section(
   },
   cardListSelector,
 )
+
+fetch(urlCards, {
+  headers: {
+    authorization: token,
+  }
+})
+  .then(res => {
+    if (res.status == 200)
+      return res.json();
+    return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
+  })
+  .then(result => {
+    cardSection.renderItems(result);
+  })
+  .catch(err => console.log(err));
 
 function openImage(card) {
   popupWithImage.open(card);

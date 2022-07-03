@@ -40,3 +40,4 @@ export const token = `${process.env.TOKEN}`;
 const urlApi = 'https://nomoreparties.co/v1'
 const cohort = `${process.env.COHORT}`
 export const urlMe = `${urlApi}/${cohort}/users/me`;
+export const urlCards = `${urlApi}/${cohort}/cards`;
