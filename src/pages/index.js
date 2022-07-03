@@ -115,6 +115,6 @@ fetch(urlMe, {
     return Promise.reject(`Поймали ошибочку при загрузке инфы о юзере: ${res.status}`);
   })
   .then(result => {
-    userInfo.setUserInfo(result).bind(userInfo);
+    userInfo.setUserInfo(result);
   })
   .catch(err => console.log(err));
