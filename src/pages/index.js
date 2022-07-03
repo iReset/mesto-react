@@ -112,7 +112,7 @@ fetch(urlMe, {
   .then(res => {
     if (res.status == 200)
       return res.json();
-    return Promise.reject(`А вот и ошибочка: ${res.status}`);
+    return Promise.reject(`Поймали ошибочку при загрузке инфы о юзере: ${res.status}`);
   })
   .then(result => {
     userInfo.setUserInfo(result).bind(userInfo);
