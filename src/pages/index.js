@@ -28,7 +28,29 @@ const userInfo = new UserInfo(optionsUserInfo);
 
 // Попапы с формой
 function handleSubmitAddCard({ title: name, link }) {
-  createCard({ name, link });
+  fetch(
+    urlCards,
+    {
+      method: 'POST',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name.trim(),
+        link: link.trim(),
+      }),
+    },
+  )
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Словили ошибочку при добавлении карточки: ${res.status}`);
+    })
+    .then(result => {
+      createCard({ name: result.name, link: result.link });
+    })
+    .catch(err => console.log(err));
 }
 
 const popupAddCard = new PopupWithForm(
