@@ -41,10 +41,34 @@ const validatorAddCard = new FormValidator(popupAddCard.getForm(), optionsValida
 validatorAddCard.enableValidation();
 
 function handleSubmitEditProfile({ name, about }) {
-  userInfo.setUserInfo({
-    name: name.trim(),
-    about: about.trim(),
-  })
+  fetch(
+    urlMe,
+    {
+      method: 'PATCH',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name.trim(),
+        about: about.trim(),
+      }),
+    },
+  )
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Словили ошибочку при обновлении инфы о юзере: ${res.status}`);
+    })
+    .then(result => {
+      userInfo.setUserInfo({
+        name: result.name,
+        about: result.about,
+      });
+    })
+    .catch(err => console.log(err));
+
+
 }
 
 const popupEditProfile = new PopupWithForm(
