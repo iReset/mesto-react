@@ -48,7 +48,11 @@ function handleSubmitAddCard({ title: name, link }) {
       return Promise.reject(`Словили ошибочку при добавлении карточки: ${res.status}`);
     })
     .then(result => {
-      createCard({ name: result.name, link: result.link });
+      createCard({
+        name: result.name,
+        link: result.link,
+        likes: result.likes.length,
+      });
     })
     .catch(err => console.log(err));
 }
@@ -128,7 +132,13 @@ fetch(urlCards, {
     return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
   })
   .then(result => {
-    cardSection.renderItems(result);
+    cardSection.renderItems(result.map(item => {
+      return {
+        name: item.name,
+        link: item.link,
+        likes: item.likes.length,
+      }
+    }));
   })
   .catch(err => console.log(err));
 

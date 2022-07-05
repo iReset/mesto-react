@@ -2,6 +2,7 @@ export const optionsCard = {
   template: '#element',
   classCard: '.element',
   likeButton: '.element__like-button',
+  quantity: '.element__like-quantity',
   removeButton: '.element__remove-button',
   likeButtonActive: 'element__like-button_active',
   image: '.element__image',
