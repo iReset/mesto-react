@@ -69,6 +69,7 @@ popupAddCard.setEventListeners();
 const validatorAddCard = new FormValidator(popupAddCard.getForm(), optionsValidation);
 validatorAddCard.enableValidation();
 
+
 function handleSubmitEditProfile({ name, about }) {
   fetch(
     urlMe,
@@ -110,6 +111,11 @@ popupEditProfile.setEventListeners();
 const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optionsValidation);
 validatorEditProfile.enableValidation();
 
+
+function handleConfirmDeleteCard(handler) {
+  popupConfirm.close();
+  handler.bind(this)();
+}
 
 const popupConfirm = new PopupConfirm(
   popupConfirmSelector,
@@ -155,8 +161,20 @@ function openImage(card) {
   popupWithImage.open(card);
 }
 
+function confirmRemoveImage(handler) {
+  popupConfirm.setHandler(handleConfirmDeleteCard.bind(this, handler));
+  popupConfirm.open();
+}
+
 function createCard(data) {
-  const card = new Card(data, optionsCard, openImage);
+  const card = new Card(
+    data,
+    optionsCard,
+    {
+      handleCardClick: openImage,
+      handleRemoveClick: confirmRemoveImage,
+    }
+  );
   cardSection.addItem(card.createCard());
 }
 

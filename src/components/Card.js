@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(data, options, handleCardClick) {
+  constructor(data, options, { handleCardClick, handleRemoveClick }) {
     this._caption = data.name;
     this._imageLink = data.link;
     this._likes = data.likes;
     this._imageAlt = data.alt;
     this._handleCardClick = handleCardClick;
+    this._handleRemoveClick = handleRemoveClick;
     this._options = options;
     this._template = this._getTemplateElement(options.template);
     this._element = null;
@@ -40,7 +41,7 @@ export default class Card {
       name: this._caption,
     }));
     this._elementLike.addEventListener("click", () => this._toggleLike());
-    this._elementRemove.addEventListener("click", () => this._removeCard());
+    this._elementRemove.addEventListener("click", () => this._handleRemoveClick(this._removeCard));
   }
 
   createCard() {
