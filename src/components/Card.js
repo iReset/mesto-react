@@ -2,6 +2,7 @@ export default class Card {
   constructor(data, options, handleCardClick) {
     this._caption = data.name;
     this._imageLink = data.link;
+    this._likes = data.likes;
     this._imageAlt = data.alt;
     this._handleCardClick = handleCardClick;
     this._options = options;
@@ -10,6 +11,7 @@ export default class Card {
     this._elementCaption = null;
     this._elementImage = null;
     this._elementLike = null;
+    this._elementQuantity = null;
     this._elementRemove = null;
   }
 
@@ -27,6 +29,7 @@ export default class Card {
     this._elementCaption = null;
     this._elementImage = null;
     this._elementLike = null;
+    this._elementQuantity = null;
     this._elementRemove = null;
   }
 
@@ -45,11 +48,13 @@ export default class Card {
     this._elementCaption = this._element.querySelector(this._options.caption);
     this._elementImage = this._element.querySelector(this._options.image);
     this._elementLike = this._element.querySelector(this._options.likeButton);
+    this._elementQuantity = this._element.querySelector(this._options.quantity);
     this._elementRemove = this._element.querySelector(this._options.removeButton);
 
     this._elementCaption.textContent = this._caption;
     this._elementImage.src = this._imageLink;
     this._elementImage.alt = this._imageAlt;
+    this._elementQuantity.textContent = this._likes || '';
 
     this._setEventListeners();
 
