@@ -1,5 +1,6 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
@@ -9,11 +10,13 @@ import {
   buttonEdit,
   cardListSelector,
   optionsCard,
+  optionsPopupConfirm,
   optionsPopupWithForm,
   optionsPopupWithImage,
   optionsUserInfo,
   optionsValidation,
   popupAddCardSelector,
+  popupConfirmSelector,
   popupEditProfileSelector,
   popupOpenImageSelector,
   token,
@@ -66,6 +69,7 @@ popupAddCard.setEventListeners();
 const validatorAddCard = new FormValidator(popupAddCard.getForm(), optionsValidation);
 validatorAddCard.enableValidation();
 
+
 function handleSubmitEditProfile({ name, about }) {
   fetch(
     urlMe,
@@ -108,6 +112,17 @@ const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optio
 validatorEditProfile.enableValidation();
 
 
+function handleConfirmDeleteCard(handler) {
+  popupConfirm.close();
+  handler.bind(this)();
+}
+
+const popupConfirm = new PopupConfirm(
+  popupConfirmSelector,
+  optionsPopupConfirm,
+);
+popupConfirm.setEventListeners();
+
 // Попап с изображением
 const popupWithImage = new PopupWithImage(popupOpenImageSelector, optionsPopupWithImage);
 popupWithImage.setEventListeners();
@@ -146,8 +161,20 @@ function openImage(card) {
   popupWithImage.open(card);
 }
 
+function confirmRemoveImage(handler) {
+  popupConfirm.setHandler(handleConfirmDeleteCard.bind(this, handler));
+  popupConfirm.open();
+}
+
 function createCard(data) {
-  const card = new Card(data, optionsCard, openImage);
+  const card = new Card(
+    data,
+    optionsCard,
+    {
+      handleCardClick: openImage,
+      handleRemoveClick: confirmRemoveImage,
+    }
+  );
   cardSection.addItem(card.createCard());
 }
 
