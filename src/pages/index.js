@@ -1,5 +1,6 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
@@ -9,11 +10,13 @@ import {
   buttonEdit,
   cardListSelector,
   optionsCard,
+  optionsPopupConfirm,
   optionsPopupWithForm,
   optionsPopupWithImage,
   optionsUserInfo,
   optionsValidation,
   popupAddCardSelector,
+  popupConfirmSelector,
   popupEditProfileSelector,
   popupOpenImageSelector,
   token,
@@ -107,6 +110,12 @@ popupEditProfile.setEventListeners();
 const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optionsValidation);
 validatorEditProfile.enableValidation();
 
+
+const popupConfirm = new PopupConfirm(
+  popupConfirmSelector,
+  optionsPopupConfirm,
+);
+popupConfirm.setEventListeners();
 
 // Попап с изображением
 const popupWithImage = new PopupWithImage(popupOpenImageSelector, optionsPopupWithImage);
