@@ -4,6 +4,7 @@ export default class Card {
     this._imageLink = data.link;
     this._likes = data.likes;
     this._imageAlt = data.alt;
+    this._canDelete = data.canDelete;
     this._handleCardClick = handleCardClick;
     this._handleRemoveClick = handleRemoveClick;
     this._options = options;
@@ -41,7 +42,8 @@ export default class Card {
       name: this._caption,
     }));
     this._elementLike.addEventListener("click", () => this._toggleLike());
-    this._elementRemove.addEventListener("click", () => this._handleRemoveClick(this._removeCard));
+    if (this._canDelete)
+      this._elementRemove.addEventListener("click", () => this._handleRemoveClick(this._removeCard));
   }
 
   createCard() {
@@ -51,6 +53,11 @@ export default class Card {
     this._elementLike = this._element.querySelector(this._options.likeButton);
     this._elementQuantity = this._element.querySelector(this._options.quantity);
     this._elementRemove = this._element.querySelector(this._options.removeButton);
+    if (!this._canDelete) {
+      this._elementRemove.remove();
+      this._elementRemove = null;
+    }
+
 
     this._elementCaption.textContent = this._caption;
     this._elementImage.src = this._imageLink;
