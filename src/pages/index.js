@@ -55,6 +55,7 @@ function handleSubmitAddCard({ title: name, link }) {
         name: result.name,
         link: result.link,
         likes: result.likes.length,
+        canDelete: true,
       });
     })
     .catch(err => console.log(err));
@@ -152,6 +153,7 @@ fetch(urlCards, {
         name: item.name,
         link: item.link,
         likes: item.likes.length,
+        canDelete: item.owner._id && item.owner._id == userInfo.getUserId(),
       }
     }));
   })
