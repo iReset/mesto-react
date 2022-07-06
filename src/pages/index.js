@@ -113,9 +113,9 @@ const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optio
 validatorEditProfile.enableValidation();
 
 
-function handleConfirmDeleteCard(handler) {
+function handleConfirmDeleteCard() {
   popupConfirm.close();
-  handler.bind(this)();
+  this.removeCard();
 }
 
 const popupConfirm = new PopupConfirm(
@@ -154,8 +154,8 @@ function openImage(card) {
   popupWithImage.open(card);
 }
 
-function confirmRemoveImage(handler) {
-  popupConfirm.setHandler(handleConfirmDeleteCard.bind(this, handler));
+function confirmRemoveImage() {
+  popupConfirm.setHandler(handleConfirmDeleteCard.bind(this));
   popupConfirm.open();
 }
 

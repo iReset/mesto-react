@@ -43,7 +43,7 @@ export default class Card {
     }));
     this._elementLike.addEventListener("click", () => this._toggleLike());
     if (this._canDelete)
-      this._elementRemove.addEventListener("click", () => this._handleRemoveClick(this._removeCard));
+      this._elementRemove.addEventListener("click", () => this._handleRemoveClick());
   }
 
   createCard() {
