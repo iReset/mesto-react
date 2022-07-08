@@ -116,6 +116,20 @@ validatorEditProfile.enableValidation();
 
 function handleConfirmDeleteCard() {
   popupConfirm.close();
+  fetch(
+    urlCards + '/' + this.getId(),
+    {
+      method: 'DELETE',
+      headers: {
+        authorization: token,
+      },
+    },
+  )
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
+    })
   this.removeCard();
 }
 
