@@ -30,7 +30,7 @@ export default class Card {
     return this._id;
   }
 
-  _removeCard() {
+  removeCard() {
     this._element.remove();
     this._element = null;
     this._elementCaption = null;
