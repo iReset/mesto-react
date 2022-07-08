@@ -130,7 +130,11 @@ function handleConfirmDeleteCard() {
         return res.json();
       return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
     })
-  this.removeCard();
+    .then(res => {
+      console.log(res);
+      this.removeCard();
+    })
+    .catch(res => console.log(res));
 }
 
 const popupConfirm = new PopupConfirm(
