@@ -52,9 +52,11 @@ function handleSubmitAddCard({ title: name, link }) {
     })
     .then(result => {
       createCard({
+        id: result._id,
         name: result.name,
         link: result.link,
         likes: result.likes.length,
+        canDelete: true,
       });
     })
     .catch(err => console.log(err));
@@ -112,9 +114,27 @@ const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optio
 validatorEditProfile.enableValidation();
 
 
-function handleConfirmDeleteCard(handler) {
+function handleConfirmDeleteCard() {
   popupConfirm.close();
-  handler.bind(this)();
+  fetch(
+    urlCards + '/' + this.getId(),
+    {
+      method: 'DELETE',
+      headers: {
+        authorization: token,
+      },
+    },
+  )
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
+    })
+    .then(res => {
+      console.log(res);
+      this.removeCard();
+    })
+    .catch(res => console.log(res));
 }
 
 const popupConfirm = new PopupConfirm(
@@ -136,33 +156,25 @@ const cardSection = new Section(
   cardListSelector,
 )
 
-fetch(urlCards, {
-  headers: {
-    authorization: token,
-  }
-})
-  .then(res => {
-    if (res.status == 200)
-      return res.json();
-    return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
+async function loadCards() {
+  return fetch(urlCards, {
+    headers: {
+      authorization: token,
+    }
   })
-  .then(result => {
-    cardSection.renderItems(result.map(item => {
-      return {
-        name: item.name,
-        link: item.link,
-        likes: item.likes.length,
-      }
-    }));
-  })
-  .catch(err => console.log(err));
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
+    })
+}
 
 function openImage(card) {
   popupWithImage.open(card);
 }
 
-function confirmRemoveImage(handler) {
-  popupConfirm.setHandler(handleConfirmDeleteCard.bind(this, handler));
+function confirmRemoveImage() {
+  popupConfirm.setHandler(handleConfirmDeleteCard.bind(this));
   popupConfirm.open();
 }
 
@@ -187,17 +199,30 @@ buttonEdit.addEventListener('click', _ => {
   popupEditProfile.open.bind(popupEditProfile)()
 });
 
-fetch(urlMe, {
-  headers: {
-    authorization: token,
-  }
-})
-  .then(res => {
-    if (res.status == 200)
-      return res.json();
-    return Promise.reject(`Поймали ошибочку при загрузке инфы о юзере: ${res.status}`);
+async function loadUserInfo() {
+  return fetch(urlMe, {
+    headers: {
+      authorization: token,
+    }
   })
-  .then(result => {
-    userInfo.setUserInfo(result);
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Поймали ошибочку при загрузке инфы о юзере: ${res.status}`);
+    })
+}
+
+Promise.all([loadUserInfo(), loadCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    cardSection.renderItems(cards.map(item => {
+      return {
+        id: item._id,
+        name: item.name,
+        link: item.link,
+        likes: item.likes.length,
+        canDelete: item.owner._id && item.owner._id == userInfo.getUserId(),
+      }
+    }));
   })
   .catch(err => console.log(err));
