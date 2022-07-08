@@ -52,6 +52,7 @@ function handleSubmitAddCard({ title: name, link }) {
     })
     .then(result => {
       createCard({
+        id: result._id,
         name: result.name,
         link: result.link,
         likes: result.likes.length,
@@ -198,6 +199,7 @@ Promise.all([loadUserInfo(), loadCards()])
     userInfo.setUserInfo(userData);
     cardSection.renderItems(cards.map(item => {
       return {
+        id: item._id,
         name: item.name,
         link: item.link,
         likes: item.likes.length,

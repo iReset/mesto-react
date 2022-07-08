@@ -1,5 +1,6 @@
 export default class Card {
   constructor(data, options, { handleCardClick, handleRemoveClick }) {
+    this._id = data.id;
     this._caption = data.name;
     this._imageLink = data.link;
     this._likes = data.likes;
@@ -23,6 +24,10 @@ export default class Card {
 
   _toggleLike() {
     this._elementLike.classList.toggle(this._options.likeButtonActive);
+  }
+
+  getId() {
+    return this._id;
   }
 
   _removeCard() {
