@@ -56,6 +56,7 @@ function handleSubmitAddCard({ title: name, link }) {
         name: result.name,
         link: result.link,
         likes: result.likes.length,
+        liked: result.likes.filter(like => like._id == userInfo.getUserId()).length > 0,
         canDelete: true,
       });
     })
@@ -178,12 +179,40 @@ function confirmRemoveImage() {
   popupConfirm.open();
 }
 
+function toggleLikeCard() {
+  const liked = this.isLiked();
+  const count = this.getCountLikes();
+  this.setLike(!liked, count + (liked ? -1 : 1));
+  fetch(
+    `${urlCards}/${this.getId()}/likes`,
+    {
+      method: liked ? 'DELETE' : 'PUT',
+      headers: {
+        authorization: token,
+      },
+    },
+  )
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Что-то с лайком не лайк: ${res.status}`);
+    })
+    .then(card => {
+      this.setLike(
+        card.likes.find(user => user._id == userInfo.getUserId()) != undefined,
+        card.likes.length,
+      );
+    })
+    .catch(res => console.log(res));
+}
+
 function createCard(data) {
   const card = new Card(
     data,
     optionsCard,
     {
       handleCardClick: openImage,
+      handleLikeClick: toggleLikeCard,
       handleRemoveClick: confirmRemoveImage,
     }
   );
@@ -221,6 +250,7 @@ Promise.all([loadUserInfo(), loadCards()])
         name: item.name,
         link: item.link,
         likes: item.likes.length,
+        liked: item.likes.find(user => user._id == userInfo.getUserId()) != undefined,
         canDelete: item.owner._id && item.owner._id == userInfo.getUserId(),
       }
     }));
