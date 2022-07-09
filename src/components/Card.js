@@ -1,12 +1,14 @@
 export default class Card {
-  constructor(data, options, { handleCardClick, handleRemoveClick }) {
+  constructor(data, options, { handleCardClick, handleLikeClick, handleRemoveClick }) {
     this._id = data.id;
     this._caption = data.name;
     this._imageLink = data.link;
     this._likes = data.likes;
+    this._liked = data.liked;
     this._imageAlt = data.alt;
     this._canDelete = data.canDelete;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
     this._handleRemoveClick = handleRemoveClick;
     this._options = options;
     this._template = this._getTemplateElement(options.template);
@@ -22,8 +24,19 @@ export default class Card {
     return document.querySelector(cardSelector).content.querySelector(this._options.classCard);
   }
 
-  _toggleLike() {
-    this._elementLike.classList.toggle(this._options.likeButtonActive);
+  getCountLikes() {
+    return this._likes;
+  }
+
+  isLiked() {
+    return this._liked;
+  }
+
+  setLike(liked, count) {
+    this._likes = count;
+    this._liked = liked;
+    this._elementLike.classList.toggle(this._options.likeButtonActive, this._liked);
+    this._elementQuantity.textContent = this._likes;
   }
 
   getId() {
@@ -46,7 +59,7 @@ export default class Card {
       alt: this._imageAlt,
       name: this._caption,
     }));
-    this._elementLike.addEventListener("click", () => this._toggleLike());
+    this._elementLike.addEventListener("click", () => this._handleLikeClick());
     if (this._canDelete)
       this._elementRemove.addEventListener("click", () => this._handleRemoveClick());
   }
@@ -67,7 +80,8 @@ export default class Card {
     this._elementCaption.textContent = this._caption;
     this._elementImage.src = this._imageLink;
     this._elementImage.alt = this._imageAlt;
-    this._elementQuantity.textContent = this._likes || '';
+
+    this.setLike(this._liked, this._likes);
 
     this._setEventListeners();
 
