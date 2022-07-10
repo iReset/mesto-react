@@ -284,7 +284,7 @@ async function loadUserInfo() {
 Promise.all([loadUserInfo(), loadCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData);
-    cardSection.renderItems(cards.map(item => {
+    cardSection.renderItems(cards.reverse().map(item => {
       return {
         id: item._id,
         name: item.name,
