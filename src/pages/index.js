@@ -29,37 +29,8 @@ import {
 import './index.css';
 
 
-// Информация о пользователе
+// Работа с пользователем
 const userInfo = new UserInfo(optionsUserInfo);
-
-// Попапы с формой
-function handleSubmitAddCard({ title: name, link }) {
-  api.addCard({
-    name: name.trim(),
-    link: link.trim(),
-  })
-    .then(result => {
-      createCard({
-        id: result._id,
-        name: result.name,
-        link: result.link,
-        likes: result.likes.length,
-        liked: result.likes.filter(like => like._id == userInfo.getUserId()).length > 0,
-        canDelete: true,
-      });
-    })
-    .catch(console.log)
-    .finally(_ => popupAddCard.close());
-}
-
-const popupAddCard = new PopupWithForm(
-  popupAddCardSelector,
-  optionsPopupWithForm,
-  handleSubmitAddCard,
-);
-popupAddCard.setEventListeners();
-const validatorAddCard = new FormValidator(popupAddCard.getForm(), optionsValidation);
-validatorAddCard.enableValidation();
 
 
 function handleSubmitEditProfile({ name, about }) {
@@ -108,6 +79,35 @@ popupEditAvatar.setEventListeners();
 const validatorEditAvatar = new FormValidator(popupEditAvatar.getForm(), optionsValidation);
 validatorEditAvatar.enableValidation();
 
+// Работа с карточками
+function handleSubmitAddCard({ title: name, link }) {
+  api.addCard({
+    name: name.trim(),
+    link: link.trim(),
+  })
+    .then(result => {
+      createCard({
+        id: result._id,
+        name: result.name,
+        link: result.link,
+        likes: result.likes.length,
+        liked: result.likes.filter(like => like._id == userInfo.getUserId()).length > 0,
+        canDelete: true,
+      });
+    })
+    .catch(console.log)
+    .finally(_ => popupAddCard.close());
+}
+
+const popupAddCard = new PopupWithForm(
+  popupAddCardSelector,
+  optionsPopupWithForm,
+  handleSubmitAddCard,
+);
+popupAddCard.setEventListeners();
+const validatorAddCard = new FormValidator(popupAddCard.getForm(), optionsValidation);
+validatorAddCard.enableValidation();
+
 
 function handleConfirmDeleteCard() {
   popupConfirm.close();
@@ -125,12 +125,10 @@ const popupConfirm = new PopupConfirm(
 );
 popupConfirm.setEventListeners();
 
-// Попап с изображением
 const popupWithImage = new PopupWithImage(popupOpenImageSelector, optionsPopupWithImage);
 popupWithImage.setEventListeners();
 
 
-// Работа с карточками
 const cardSection = new Section(
   {
     renderer: createCard,
@@ -174,6 +172,8 @@ function createCard(data) {
   cardSection.addItem(card.createCard());
 }
 
+
+// Обработка кнопок
 buttonAdd.addEventListener('click', _ => {
   validatorAddCard.resetValidation();
   popupAddCard.open.bind(popupAddCard)();
@@ -187,6 +187,8 @@ buttonAvatar.addEventListener('click', _ => {
   popupEditAvatar.open.bind(popupEditAvatar)()
 });
 
+
+// Api и начальная загрузка
 const api = new Api(
   urlApiBase,
   handlersApi,
