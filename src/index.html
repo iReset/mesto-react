@@ -17,7 +17,9 @@
 
   <main class="main">
     <section class="profile root__profile">
-      <img class="profile__avatar" src="<%=require('./images/avatar.min.jpg')%>" alt="Аватар пользователя.">
+      <button class="profile__avatar-edit button" type="button" aria-label="Изменить аватар.">
+        <img class="profile__avatar" src="#" alt="Аватар пользователя.">
+      </button>
       <div class="profile__info">
         <h1 class="profile__name"></h1>
         <p class="profile__about"></p>
@@ -35,6 +37,21 @@
   <footer class="footer  root__footer">
     <p class="footer__copyright">2022&nbsp;Mesto&nbsp;Russia</p>
   </footer>
+
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <button class="popup__close-button button" type="button" aria-label="Закрыть форму ввода."></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form  popup__avatar" id="avatar-edit" name="avatar_edit">
+        <fieldset class="popup__fieldset">
+          <input class="popup__input popup__input_type_link" type="url" id="avatar_link" name="avatar_link" value=""
+            placeholder="Ссылка на аватар" required>
+          <span class="popup__input-error" id="avatar_link-error" hidden></span>
+          <button class="popup__save-button button" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 
   <div class="popup popup_type_edit-profile">
     <div class="popup__container">

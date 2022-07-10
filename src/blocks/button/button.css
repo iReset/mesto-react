@@ -1,10 +1,11 @@
 .button {
   margin: 0;
   padding: 0;
-  transition: opacity 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   cursor: pointer;
   outline: none;
   border: none;
+  overflow: hidden;
   background: transparent center no-repeat;
   font-family: 'Inter', 'Arial', sans-serif;
 }
