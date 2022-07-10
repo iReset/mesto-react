@@ -1,3 +1,4 @@
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupConfirm from '../components/PopupConfirm.js';
@@ -10,6 +11,7 @@ import {
   buttonAvatar,
   buttonEdit,
   cardListSelector,
+  handlersApi,
   optionsCard,
   optionsPopupConfirm,
   optionsPopupWithForm,
@@ -22,9 +24,7 @@ import {
   popupEditProfileSelector,
   popupOpenImageSelector,
   token,
-  urlAvatar,
-  urlMe,
-  urlCards,
+  urlApiBase,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -34,25 +34,10 @@ const userInfo = new UserInfo(optionsUserInfo);
 
 // Попапы с формой
 function handleSubmitAddCard({ title: name, link }) {
-  fetch(
-    urlCards,
-    {
-      method: 'POST',
-      headers: {
-        authorization: token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name.trim(),
-        link: link.trim(),
-      }),
-    },
-  )
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Словили ошибочку при добавлении карточки: ${res.status}`);
-    })
+  api.addCard({
+    name: name.trim(),
+    link: link.trim(),
+  })
     .then(result => {
       createCard({
         id: result._id,
@@ -63,7 +48,7 @@ function handleSubmitAddCard({ title: name, link }) {
         canDelete: true,
       });
     })
-    .catch(err => console.log(err))
+    .catch(console.log)
     .finally(_ => popupAddCard.close());
 }
 
@@ -78,32 +63,17 @@ validatorAddCard.enableValidation();
 
 
 function handleSubmitEditProfile({ name, about }) {
-  fetch(
-    urlMe,
-    {
-      method: 'PATCH',
-      headers: {
-        authorization: token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name.trim(),
-        about: about.trim(),
-      }),
-    },
-  )
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Словили ошибочку при обновлении инфы о юзере: ${res.status}`);
-    })
+  api.editProfile({
+    name: name.trim(),
+    about: about.trim(),
+  })
     .then(result => {
       userInfo.setUserInfo({
         name: result.name,
         about: result.about,
       });
     })
-    .catch(err => console.log(err))
+    .catch(console.log)
     .finally(_ => popupEditProfile.close());
 }
 
@@ -119,28 +89,13 @@ validatorEditProfile.enableValidation();
 
 
 function handleSubmitEditAvatar({ avatar_link }) {
-  fetch(
-    urlAvatar,
-    {
-      method: 'PATCH',
-      headers: {
-        authorization: token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        avatar: avatar_link.trim(),
-      }),
-    },
-  )
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Аватар что-то не того: ${res.status}`);
-    })
+  api.editAvatar({
+    avatar: avatar_link.trim(),
+  })
     .then(result => {
       userInfo.setAvatar(result.avatar);
     })
-    .catch(err => console.log(err))
+    .catch(console.log)
     .finally(_ => popupEditAvatar.close());
 }
 
@@ -156,25 +111,12 @@ validatorEditAvatar.enableValidation();
 
 function handleConfirmDeleteCard() {
   popupConfirm.close();
-  fetch(
-    urlCards + '/' + this.getId(),
-    {
-      method: 'DELETE',
-      headers: {
-        authorization: token,
-      },
-    },
-  )
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
-    })
+  api.deleteCard(this.getId())
     .then(res => {
       console.log(res);
       this.removeCard();
     })
-    .catch(res => console.log(res));
+    .catch(console.log);
 }
 
 const popupConfirm = new PopupConfirm(
@@ -196,19 +138,6 @@ const cardSection = new Section(
   cardListSelector,
 )
 
-async function loadCards() {
-  return fetch(urlCards, {
-    headers: {
-      authorization: token,
-    }
-  })
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Словили ошибочку при загрузке карточек: ${res.status}`);
-    })
-}
-
 function openImage(card) {
   popupWithImage.open(card);
 }
@@ -219,30 +148,17 @@ function confirmRemoveImage() {
 }
 
 function toggleLikeCard() {
-  const liked = this.isLiked();
+  const like = !this.isLiked();
   const count = this.getCountLikes();
-  this.setLike(!liked, count + (liked ? -1 : 1));
-  fetch(
-    `${urlCards}/${this.getId()}/likes`,
-    {
-      method: liked ? 'DELETE' : 'PUT',
-      headers: {
-        authorization: token,
-      },
-    },
-  )
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Что-то с лайком не лайк: ${res.status}`);
-    })
+  this.setLike(like, count + (like ? 1 : -1));
+  api.setLike(this.getId(), like)
     .then(card => {
       this.setLike(
         card.likes.find(user => user._id == userInfo.getUserId()) != undefined,
         card.likes.length,
       );
     })
-    .catch(res => console.log(res));
+    .catch(console.log);
 }
 
 function createCard(data) {
@@ -271,20 +187,16 @@ buttonAvatar.addEventListener('click', _ => {
   popupEditAvatar.open.bind(popupEditAvatar)()
 });
 
-async function loadUserInfo() {
-  return fetch(urlMe, {
-    headers: {
-      authorization: token,
-    }
-  })
-    .then(res => {
-      if (res.status == 200)
-        return res.json();
-      return Promise.reject(`Поймали ошибочку при загрузке инфы о юзере: ${res.status}`);
-    })
-}
+const api = new Api(
+  urlApiBase,
+  handlersApi,
+  {
+    authorization: token,
+    'Content-Type': 'application/json'
+  }
+);
 
-Promise.all([loadUserInfo(), loadCards()])
+Promise.all([api.loadUserInfo(), api.loadCards()])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData);
     cardSection.renderItems(cards.reverse().map(item => {
@@ -298,4 +210,4 @@ Promise.all([loadUserInfo(), loadCards()])
       }
     }));
   })
-  .catch(err => console.log(err));
+  .catch(console.log);
