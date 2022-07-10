@@ -21,13 +21,17 @@ export default class PopupWithForm extends Popup {
 
   open() {
     this._initFields();
-    this._buttonSave.textContent = 'Сохранить';
+    this.setWaitingState(false);
     super.open();
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', this._submit.bind(this));
+  }
+
+  setWaitingState(wait) {
+    this._buttonSave.textContent = wait ? 'Сохранение...' : 'Сохранить';
   }
 
   _initFields() {
@@ -52,7 +56,7 @@ export default class PopupWithForm extends Popup {
 
   _submit(event) {
     event.preventDefault();
-    this._buttonSave.textContent = 'Сохранение...';
+    this.setWaitingState(true);
     this._handleSubmit(this._getInputValues());
   }
 }
