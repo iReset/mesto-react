@@ -63,7 +63,8 @@ function handleSubmitAddCard({ title: name, link }) {
         canDelete: true,
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(_ => popupAddCard.close());
 }
 
 const popupAddCard = new PopupWithForm(
@@ -102,7 +103,8 @@ function handleSubmitEditProfile({ name, about }) {
         about: result.about,
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(_ => popupEditProfile.close());
 }
 
 const popupEditProfile = new PopupWithForm(
@@ -138,7 +140,8 @@ function handleSubmitEditAvatar({ avatar_link }) {
     .then(result => {
       userInfo.setAvatar(result.avatar);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(_ => popupEditAvatar.close());
 }
 
 const popupEditAvatar = new PopupWithForm(

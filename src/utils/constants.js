@@ -21,6 +21,7 @@ export const optionsPopupWithImage = {
 }
 
 export const optionsPopupWithForm = {
+  buttonSelector: '.popup__save-button',
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
 }
