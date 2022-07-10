@@ -36,15 +36,19 @@ export const optionsUserInfo = {
 }
 
 export const buttonAdd = document.querySelector('.profile__add-button');
+export const buttonAvatar = document.querySelector('.profile__avatar-edit');
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const cardListSelector = '.elements__list';
 export const popupAddCardSelector = '.popup_type_add-card';
 export const popupConfirmSelector = '.popup_type_confirm';
+export const popupEditAvatarSelector = '.popup_type_edit-avatar';
 export const popupEditProfileSelector = '.popup_type_edit-profile';
+
 export const popupOpenImageSelector = '.popup_type_open-image';
 
 export const token = `${process.env.TOKEN}`;
 const urlApi = 'https://nomoreparties.co/v1'
 const cohort = `${process.env.COHORT}`
 export const urlMe = `${urlApi}/${cohort}/users/me`;
+export const urlAvatar = `${urlMe}/avatar`;
 export const urlCards = `${urlApi}/${cohort}/cards`;

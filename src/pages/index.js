@@ -7,6 +7,7 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import {
   buttonAdd,
+  buttonAvatar,
   buttonEdit,
   cardListSelector,
   optionsCard,
@@ -17,9 +18,11 @@ import {
   optionsValidation,
   popupAddCardSelector,
   popupConfirmSelector,
+  popupEditAvatarSelector,
   popupEditProfileSelector,
   popupOpenImageSelector,
   token,
+  urlAvatar,
   urlMe,
   urlCards,
 } from '../utils/constants.js';
@@ -100,8 +103,6 @@ function handleSubmitEditProfile({ name, about }) {
       });
     })
     .catch(err => console.log(err));
-
-
 }
 
 const popupEditProfile = new PopupWithForm(
@@ -113,6 +114,41 @@ const popupEditProfile = new PopupWithForm(
 popupEditProfile.setEventListeners();
 const validatorEditProfile = new FormValidator(popupEditProfile.getForm(), optionsValidation);
 validatorEditProfile.enableValidation();
+
+
+function handleSubmitEditAvatar({ avatar_link }) {
+  fetch(
+    urlAvatar,
+    {
+      method: 'PATCH',
+      headers: {
+        authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        avatar: avatar_link.trim(),
+      }),
+    },
+  )
+    .then(res => {
+      if (res.status == 200)
+        return res.json();
+      return Promise.reject(`Аватар что-то не того: ${res.status}`);
+    })
+    .then(result => {
+      userInfo.setAvatar(result.avatar);
+    })
+    .catch(err => console.log(err));
+}
+
+const popupEditAvatar = new PopupWithForm(
+  popupEditAvatarSelector,
+  optionsPopupWithForm,
+  handleSubmitEditAvatar,
+);
+popupEditAvatar.setEventListeners();
+const validatorEditAvatar = new FormValidator(popupEditAvatar.getForm(), optionsValidation);
+validatorEditAvatar.enableValidation();
 
 
 function handleConfirmDeleteCard() {
@@ -226,6 +262,10 @@ buttonAdd.addEventListener('click', _ => {
 buttonEdit.addEventListener('click', _ => {
   validatorEditProfile.resetValidation();
   popupEditProfile.open.bind(popupEditProfile)()
+});
+buttonAvatar.addEventListener('click', _ => {
+  validatorEditAvatar.resetValidation();
+  popupEditAvatar.open.bind(popupEditAvatar)()
 });
 
 async function loadUserInfo() {
