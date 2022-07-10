@@ -39,13 +39,14 @@ function handleSubmitEditProfile({ name, about }) {
     about: about.trim(),
   })
     .then(result => {
+      popupEditProfile.close();
       userInfo.setUserInfo({
         name: result.name,
         about: result.about,
       });
     })
     .catch(console.log)
-    .finally(_ => popupEditProfile.close());
+    .finally(_ => popupEditProfile.setWaitingState(false));
 }
 
 const popupEditProfile = new PopupWithForm(
@@ -64,10 +65,11 @@ function handleSubmitEditAvatar({ avatar_link }) {
     avatar: avatar_link.trim(),
   })
     .then(result => {
+      popupEditAvatar.close();
       userInfo.setAvatar(result.avatar);
     })
     .catch(console.log)
-    .finally(_ => popupEditAvatar.close());
+    .finally(_ => popupEditAvatar.setWaitingState(false));
 }
 
 const popupEditAvatar = new PopupWithForm(
@@ -86,6 +88,7 @@ function handleSubmitAddCard({ title: name, link }) {
     link: link.trim(),
   })
     .then(result => {
+      popupAddCard.close();
       createCard({
         id: result._id,
         name: result.name,
@@ -96,7 +99,7 @@ function handleSubmitAddCard({ title: name, link }) {
       });
     })
     .catch(console.log)
-    .finally(_ => popupAddCard.close());
+    .finally(_ => popupAddCard.setWaitingState(false));
 }
 
 const popupAddCard = new PopupWithForm(
@@ -146,10 +149,7 @@ function confirmRemoveImage() {
 }
 
 function toggleLikeCard() {
-  const like = !this.isLiked();
-  const count = this.getCountLikes();
-  this.setLike(like, count + (like ? 1 : -1));
-  api.setLike(this.getId(), like)
+  api.setLike(this.getId(), !this.isLiked())
     .then(card => {
       this.setLike(
         card.likes.find(user => user._id == userInfo.getUserId()) != undefined,
