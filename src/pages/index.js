@@ -146,10 +146,7 @@ function confirmRemoveImage() {
 }
 
 function toggleLikeCard() {
-  const like = !this.isLiked();
-  const count = this.getCountLikes();
-  this.setLike(like, count + (like ? 1 : -1));
-  api.setLike(this.getId(), like)
+  api.setLike(this.getId(), !this.isLiked())
     .then(card => {
       this.setLike(
         card.likes.find(user => user._id == userInfo.getUserId()) != undefined,
