@@ -32,6 +32,7 @@ export const optionsPopupConfirm = {
 export const optionsUserInfo = {
   selectorName: '.profile__name',
   selectorAbout: '.profile__about',
+  selectorAvatar: '.profile__avatar',
 }
 
 export const buttonAdd = document.querySelector('.profile__add-button');
