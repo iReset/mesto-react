@@ -113,13 +113,13 @@ validatorAddCard.enableValidation();
 
 
 function handleConfirmDeleteCard() {
-  popupConfirm.close();
   api.deleteCard(this.getId())
-    .then(res => {
-      console.log(res);
+    .then(_ => {
+      popupConfirm.close();
       this.removeCard();
     })
-    .catch(console.log);
+    .catch(console.log)
+    .finally(_ => popupConfirm.setWaitingState(false));
 }
 
 const popupConfirm = new PopupConfirm(
@@ -127,6 +127,7 @@ const popupConfirm = new PopupConfirm(
   optionsPopupConfirm,
 );
 popupConfirm.setEventListeners();
+popupConfirm.setConfirmButtonTexts({ textWaiting: 'Удаление...' });
 
 const popupWithImage = new PopupWithImage(popupOpenImageSelector, optionsPopupWithImage);
 popupWithImage.setEventListeners();
