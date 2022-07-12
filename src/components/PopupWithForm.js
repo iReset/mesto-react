@@ -8,6 +8,8 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popup.querySelectorAll(inputSelector);
     this._handleSubmit = handleSubmit;
     this._getInitial = getInitial;
+    this._textAction = "Сохранить";
+    this._textWaiting = "Сохранение...";
   }
 
   getForm() {
@@ -30,8 +32,15 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', this._submit.bind(this));
   }
 
+  setSaveButtonTexts({ textAction, textWaiting }) {
+    if (textAction)
+      this._textAction = textAction;
+    if (textWaiting)
+      this._textWaiting = textWaiting;
+  }
+
   setWaitingState(wait) {
-    this._buttonSave.textContent = wait ? 'Сохранение...' : 'Сохранить';
+    this._buttonSave.textContent = wait ? this._textWaiting : this._textAction;
   }
 
   _initFields() {
