@@ -27,6 +27,7 @@ export const optionsPopupWithForm = {
 }
 
 export const optionsPopupConfirm = {
+  buttonSelector: '.popup__save-button',
   formSelector: '.popup__form',
 }
 

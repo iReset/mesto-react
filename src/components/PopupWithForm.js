@@ -8,6 +8,8 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popup.querySelectorAll(inputSelector);
     this._handleSubmit = handleSubmit;
     this._getInitial = getInitial;
+    this._textAction = "Сохранить";
+    this._textWaiting = "Сохранение...";
   }
 
   getForm() {
@@ -30,8 +32,15 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', this._submit.bind(this));
   }
 
+  setSaveButtonTexts({ textAction, textWaiting }) {
+    if (textAction)
+      this._textAction = textAction;
+    if (textWaiting)
+      this._textWaiting = textWaiting;
+  }
+
   setWaitingState(wait) {
-    this._buttonSave.textContent = wait ? 'Сохранение...' : 'Сохранить';
+    this._buttonSave.textContent = wait ? this._textWaiting : this._textAction;
   }
 
   _initFields() {
@@ -39,6 +48,13 @@ export default class PopupWithForm extends Popup {
       return;
 
     const data = this._getInitial();
+    // NOTE: Согласен с Вами, что код с колбэком более сложный для восприятия.
+    // Но в то же время он имеет и преимущество по сравнению с сеттером: сеттер надо будет не забывать вызывать
+    // в каждом месте кода, где будет использован метод open, в то время как колбэк необходимо установить только
+    // один раз и при каждом вызове open он будет вызываться автоматически.
+    //
+    // Я все-таки позволю себе пока оставить существующую реализацию.
+    // Не потому, что он лучше, а потому, что опыта пока мало )  Надо поразмышлять )
     this._inputList.forEach(input => {
       if (data[input.name]) {
         input.value = data[input.name];
