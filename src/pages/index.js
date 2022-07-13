@@ -66,7 +66,7 @@ function handleSubmitEditAvatar({ avatar_link }) {
   })
     .then(result => {
       popupEditAvatar.close();
-      userInfo.setAvatar(result.avatar);
+      userInfo.setUserInfo(result);
     })
     .catch(console.log)
     .finally(_ => popupEditAvatar.setWaitingState(false));
