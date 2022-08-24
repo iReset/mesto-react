@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Card from './Card';
+
 import api from '../utils/api.js';
 
 function Main(props) {
@@ -52,22 +54,14 @@ function Main(props) {
       <section className="elements root__elements" aria-label="Блок с карточками мест.">
         <ul className="elements__list">
           {cards.map(card => {
-            console.log(card);
             return (
-              <li className="element" key={card._id}>
-                <div className="element__image-container">
-                  <img className="element__image" src={card.link} alt={card.name} />
-                </div>
-                <button className="element__remove-button button" type="button" aria-label="Удалить."></button>
-                <div className="element__info">
-                  <h2 className="element__caption">{card.name}</h2>
-                  <div className="element__like">
-                    <button className="element__like-button button" type="button" aria-label="Нравится."></button>
-                    <p className="element__like-quantity">{card.likes.length}</p>
-                  </div>
-                </div>
-              </li>
-            )
+              <Card
+                id={card._id}
+                link={card.link}
+                name={card.name}
+                likes={card.likes.length}
+              />
+            );
           })}
         </ul>
       </section>
