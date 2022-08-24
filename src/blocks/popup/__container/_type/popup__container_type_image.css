@@ -1,0 +1,15 @@
+.popup__container_type_image {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  display: grid;
+  row-gap: 10px;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas:
+    "none"
+    "popup__image-block"
+    "popup__caption";
+  width: auto;
+}

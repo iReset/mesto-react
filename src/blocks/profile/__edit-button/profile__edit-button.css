@@ -1,0 +1,21 @@
+.profile__edit-button {
+  margin-top: 16px;
+  width: 24px;
+  height: 24px;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+  background-image: url('./edit-button.min.svg');
+  grid-area: profile__edit-button;
+}
+
+@media (max-width: 619px) {
+  .profile__edit-button {
+    margin-top: 8px;
+    width: 18px;
+    height: 18px;
+    background-size: 18px;
+    font-size: 27px;
+    line-height: 33px;
+  }
+}
