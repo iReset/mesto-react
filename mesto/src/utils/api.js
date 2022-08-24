@@ -1,4 +1,10 @@
-export default class Api {
+import {
+  handlersApi,
+  token,
+  urlApiBase,
+} from './constants.js';
+
+class Api {
   constructor(baseUrl, handlers, headers) {
     this._baseUrl = baseUrl;
     this._handlers = handlers;
@@ -66,3 +72,14 @@ export default class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`);
   }
 }
+
+const api = new Api(
+  urlApiBase,
+  handlersApi,
+  {
+    authorization: token,
+    'Content-Type': 'application/json'
+  }
+);
+
+export default api;
