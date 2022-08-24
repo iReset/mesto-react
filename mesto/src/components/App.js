@@ -110,15 +110,13 @@ function App() {
         onClose={closeAllPopups}
       />
 
-      <div className="popup popup_type_confirm">
-        <div className="popup__container">
-          <button className="popup__close-button button" type="button" aria-label="Закрыть окно подтверждения."></button>
-          <h2 className="popup__title">Вы уверены?</h2>
-          <form className="popup__form  popup__confirm" id="confirm" name="confirm">
-            <button className="popup__save-button button" type="submit">Да</button>
-          </form>
-        </div>
-      </div>
+      <PopupWithForm
+        name="confirm"
+        title="Вы уверены?"
+        ariaLabel="Закрыть окно подтверждения."
+        buttonText="Да"
+        onClose={closeAllPopups}
+      />
     </>
   );
 }
