@@ -25,7 +25,7 @@ import {
   popupOpenImageSelector,
   token,
   urlApiBase,
-} from '../utils/constants.js';
+} from '../../mesto/src/utils/constants.js';
 import './index.css';
 
 
