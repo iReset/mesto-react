@@ -10,6 +10,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const stateFormSetters = [setAddPlacePopupOpen, setEditAvatarPopupOpen, setEditProfilePopupOpen];
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -22,6 +23,10 @@ function App() {
   function handleAddPlaceClick() {
     setAddPlacePopupOpen(true);
   };
+
+  function closeAllPopups() {
+    stateFormSetters.forEach(setter => setter(false));
+  }
 
   return (
     <>
@@ -39,6 +44,7 @@ function App() {
         ariaLabel="Закрыть форму ввода."
         buttonText="Сохранить"
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
         children={
           <fieldset className="popup__fieldset">
             <input
@@ -60,6 +66,7 @@ function App() {
         ariaLabel="Закрыть форму ввода."
         buttonText="Сохранить"
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
         children={
           <fieldset className="popup__fieldset">
             <input className="popup__input popup__input_type_name" type="text" id="name" name="name" value=""
@@ -78,6 +85,7 @@ function App() {
         ariaLabel="Закрыть форму ввода."
         buttonText="Сохранить"
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
         children={
           <fieldset className="popup__fieldset">
             <input className="popup__input popup__input_type_title" type="text" id="title" name="title" value=""
