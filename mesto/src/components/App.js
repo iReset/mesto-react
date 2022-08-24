@@ -1,32 +1,13 @@
+import Footer from './Footer';
+import Header from './Header';
+import Main from './Main';
+
 function App() {
   return (
     <>
-      <header className="header root__header">
-        <a className="header__logo" href="./index.html" target="_self"></a>
-      </header>
-
-      <main className="main">
-        <section className="profile root__profile">
-          <button className="profile__avatar-edit button" type="button" aria-label="Изменить аватар.">
-            <img className="profile__avatar" src="#" alt="Аватар пользователя." />
-          </button>
-          <div className="profile__info">
-            <h1 className="profile__name"></h1>
-            <p className="profile__about"></p>
-            <button className="profile__edit-button button" type="button" aria-label="Редактировать."></button>
-          </div>
-          <button className="profile__add-button button" type="button" aria-label="Добавить."></button>
-        </section>
-
-        <section className="elements root__elements" aria-label="Блок с карточками мест.">
-          <ul className="elements__list">
-          </ul>
-        </section>
-      </main>
-
-      <footer className="footer  root__footer">
-        <p className="footer__copyright">2022&nbsp;Mesto&nbsp;Russia</p>
-      </footer>
+      <Header />
+      <Main />
+      <Footer />
 
       <div className="popup popup_type_edit-avatar">
         <div className="popup__container">
