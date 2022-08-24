@@ -1,4 +1,10 @@
-export default class Api {
+import {
+  handlersApi,
+  token,
+  urlApiBase,
+} from './constants.js';
+
+class Api {
   constructor(baseUrl, handlers, headers) {
     this._baseUrl = baseUrl;
     this._handlers = handlers;
@@ -67,3 +73,11 @@ export default class Api {
   }
 }
 
+export const api = new Api(
+  urlApiBase,
+  handlersApi,
+  {
+    authorization: token,
+    'Content-Type': 'application/json'
+  }
+);
