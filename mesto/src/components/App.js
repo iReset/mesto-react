@@ -10,6 +10,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState('');
   const stateFormSetters = [setAddPlacePopupOpen, setEditAvatarPopupOpen, setEditProfilePopupOpen];
 
   function handleEditAvatarClick() {
@@ -24,8 +25,13 @@ function App() {
     setAddPlacePopupOpen(true);
   };
 
+  function handleCardClick(link) {
+    setSelectedCard(link);
+  };
+
   function closeAllPopups() {
     stateFormSetters.forEach(setter => setter(false));
+    setSelectedCard('');
   }
 
   return (
@@ -35,6 +41,7 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
 
@@ -98,7 +105,10 @@ function App() {
         }
       />
 
-      <ImagePopup />
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
 
       <div className="popup popup_type_confirm">
         <div className="popup__container">
@@ -109,22 +119,6 @@ function App() {
           </form>
         </div>
       </div>
-
-      <template id="element">
-        <li className="element">
-          <div className="element__image-container">
-            <img className="element__image" src="#" alt="" />
-          </div>
-          <button className="element__remove-button button" type="button" aria-label="Удалить."></button>
-          <div className="element__info">
-            <h2 className="element__caption"></h2>
-            <div className="element__like">
-              <button className="element__like-button button" type="button" aria-label="Нравится."></button>
-              <p className="element__like-quantity"></p>
-            </div>
-          </div>
-        </li>
-      </template>
     </>
   );
 }

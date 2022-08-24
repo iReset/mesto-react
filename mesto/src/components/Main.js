@@ -1,19 +1,23 @@
 import React from 'react';
 
+import Card from './Card';
+
 import api from '../utils/api.js';
 
 function Main(props) {
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('');
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.loadUserInfo()
-      .then(data => {
-        const { user, about, _id, avatar } = data;
-        setUserName(user);
+    Promise.all([api.loadUserInfo(), api.loadCards()])
+      .then(([data, cards]) => {
+        const { name, about, avatar } = data;
+        setUserName(name);
         setUserDescription(about);
         setUserAvatar(avatar);
+        setCards(cards);
       })
       .catch(console.log);
   }, []);
@@ -49,6 +53,17 @@ function Main(props) {
 
       <section className="elements root__elements" aria-label="Блок с карточками мест.">
         <ul className="elements__list">
+          {cards.map(card => {
+            return (
+              <Card
+                key={card._id}
+                link={card.link}
+                name={card.name}
+                likes={card.likes.length}
+                onCardClick={props.onCardClick}
+              />
+            );
+          })}
         </ul>
       </section>
     </main>
