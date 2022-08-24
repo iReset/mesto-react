@@ -73,7 +73,7 @@ class Api {
   }
 }
 
-export const api = new Api(
+const api = new Api(
   urlApiBase,
   handlersApi,
   {
@@ -81,3 +81,5 @@ export const api = new Api(
     'Content-Type': 'application/json'
   }
 );
+
+export default api;
