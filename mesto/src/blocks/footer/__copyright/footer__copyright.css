@@ -1,0 +1,21 @@
+.footer__copyright {
+  margin: 0;
+  padding: 0;
+  color: #545454;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.footer__copyright::before {
+  content: "\a9\a0"; /* &copy;&nbsp; */
+}
+
+
+@media screen and (max-width: 768px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

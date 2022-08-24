@@ -1,0 +1,8 @@
+.element__remove-button {
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-image: url(./remove-button.min.svg);
+}

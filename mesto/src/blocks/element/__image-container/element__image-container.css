@@ -1,0 +1,8 @@
+.element__image-container {
+  margin: 0;
+  padding: 0 0 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
