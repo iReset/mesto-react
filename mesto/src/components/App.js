@@ -109,22 +109,6 @@ function App() {
           </form>
         </div>
       </div>
-
-      <template id="element">
-        <li className="element">
-          <div className="element__image-container">
-            <img className="element__image" src="#" alt="" />
-          </div>
-          <button className="element__remove-button button" type="button" aria-label="Удалить."></button>
-          <div className="element__info">
-            <h2 className="element__caption"></h2>
-            <div className="element__like">
-              <button className="element__like-button button" type="button" aria-label="Нравится."></button>
-              <p className="element__like-quantity"></p>
-            </div>
-          </div>
-        </li>
-      </template>
     </>
   );
 }
