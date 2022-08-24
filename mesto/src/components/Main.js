@@ -56,10 +56,11 @@ function Main(props) {
           {cards.map(card => {
             return (
               <Card
-                id={card._id}
+                key={card._id}
                 link={card.link}
                 name={card.name}
                 likes={card.likes.length}
+                onCardClick={props.onCardClick}
               />
             );
           })}
