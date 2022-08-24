@@ -1,8 +1,6 @@
 .element__caption {
   margin: 0;
   padding: 0;
-  /* в стайл-гайде Яндекс.Практикум нет требований к отсутствию пустых строк
-  в описании стилей */
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
