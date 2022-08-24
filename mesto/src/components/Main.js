@@ -1,22 +1,4 @@
-import {
-  popupAddCardSelector,
-  popupEditAvatarSelector,
-  popupEditProfileSelector,
-} from '../utils/constants.js';
-
-function Main() {
-  function handleEditAvatarClick() {
-    document.querySelector(popupEditAvatarSelector).classList.add('popup_opened');
-  };
-
-  function handleEditProfileClick() {
-    document.querySelector(popupEditProfileSelector).classList.add('popup_opened');
-  };
-
-  function handleAddPlaceClick() {
-    document.querySelector(popupAddCardSelector).classList.add('popup_opened');
-  };
-
+function Main(props) {
   return (
     <main className="main">
       <section className="profile root__profile">
@@ -24,7 +6,7 @@ function Main() {
           className="profile__avatar-edit button"
           type="button"
           aria-label="Изменить аватар."
-          onClick={handleEditAvatarClick}
+          onClick={props.onEditAvatar}
         >
           <img className="profile__avatar" src="#" alt="Аватар пользователя." />
         </button>
@@ -35,14 +17,14 @@ function Main() {
             className="profile__edit-button button"
             type="button"
             aria-label="Редактировать."
-            onClick={handleEditProfileClick}
+            onClick={props.onEditProfile}
           ></button>
         </div>
         <button
           className="profile__add-button button"
           type="button"
           aria-label="Добавить."
-          onClick={handleAddPlaceClick}
+          onClick={props.onAddPlace}
         ></button>
       </section>
 
