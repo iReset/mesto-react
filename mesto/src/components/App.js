@@ -1,9 +1,9 @@
+import Header from './Header';
+
 function App() {
   return (
     <>
-      <header className="header root__header">
-        <a className="header__logo" href="./index.html" target="_self"></a>
-      </header>
+      <Header />
 
       <main className="main">
         <section className="profile root__profile">
