@@ -57,9 +57,7 @@ function Main(props) {
             return (
               <Card
                 key={card._id}
-                link={card.link}
-                name={card.name}
-                likes={card.likes.length}
+                card={card}
                 onCardClick={props.onCardClick}
               />
             );

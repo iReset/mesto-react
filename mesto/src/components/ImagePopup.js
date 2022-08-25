@@ -1,7 +1,7 @@
 function ImagePopup(props) {
-  let openClass = '';
-  if (props.card && props.card.length > 0)
-    openClass = 'popup_opened';
+  const openClass = props.card && 'popup_opened' || '';
+  const link = props.card && props.card.link;
+  const alt = props.card && props.card.alt;
 
   return (
     <div className={`popup popup_type_open-image ${openClass}`}>
@@ -13,7 +13,7 @@ function ImagePopup(props) {
             aria-label="Закрыть изображение."
             onClick={props.onClose}
           ></button>
-          <img className="popup__image" src={props.card} alt={props.alt} />
+          <img className="popup__image" src={link} alt={alt} />
         </div>
         <figcaption className="popup__caption"></figcaption>
       </figure>
