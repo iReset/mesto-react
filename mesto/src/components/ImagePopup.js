@@ -1,5 +1,5 @@
 function ImagePopup(props) {
-  const openClass = props.card && 'popup_opened' || '';
+  const openClass = props.card ? 'popup_opened' : '';
   const link = props.card && props.card.link;
   const alt = props.card && props.card.alt;
 

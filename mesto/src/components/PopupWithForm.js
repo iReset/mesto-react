@@ -1,7 +1,6 @@
 function PopupWithForm(props) {
-  let openClass = '';
-  if (props.isOpen)
-    openClass = 'popup_opened';
+  const openClass = props.isOpen ? 'popup_opened' : '';
+  // Не хочется иметь 'null' как имя класса, поэтому тернарный оператор вместо логической операции
 
   return (
     <div className={`popup popup_type_${props.name} ${openClass}`}>
