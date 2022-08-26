@@ -27,7 +27,7 @@ function EditAvatarPopup(props) {
     if (props.isOpen) {
       setAvatar(currentUser.avatar);
     }
-  }, [props.isOpen, currentUser && currentUser.avatar]);
+  }, [props.isOpen, currentUser]);
 
   return (
     <PopupWithForm
