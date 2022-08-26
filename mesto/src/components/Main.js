@@ -25,6 +25,17 @@ function Main(props) {
       .catch(console.log);
   }
 
+  function handleCardDelete(card) {
+    if (!currentUser)
+      return;
+
+    api.deleteCard(card._id)
+      .then(_ => {
+        setCards(state => state.filter(c => c._id !== card._id));
+      })
+      .catch(console.log);
+  }
+
   React.useEffect(() => {
     api.loadCards()
       .then(_cards => setCards(_cards))
@@ -70,6 +81,7 @@ function Main(props) {
                 options={optionsCard}
                 onCardClick={props.onCardClick}
                 onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
               />
             );
           })}
