@@ -2,6 +2,7 @@ import React from 'react';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
+import AddPlacePopup from './AddPlacePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import EditProfilePopup from './EditProfilePopup';
 import Footer from './Footer';
@@ -114,23 +115,7 @@ function App() {
 
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
-      <PopupWithForm
-        name="add-card"
-        title="Новое место"
-        ariaLabel="Закрыть форму ввода."
-        buttonText="Сохранить"
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-      >
-        <fieldset className="popup__fieldset">
-          <input className="popup__input popup__input_type_title" type="text" id="title" name="title" value=""
-            placeholder="Название" required minLength="2" maxLength="30" />
-          <span className="popup__input-error" id="title-error" hidden></span>
-          <input className="popup__input popup__input_type_link" type="url" id="link" name="link" value=""
-            placeholder="Ссылка на картинку" required />
-          <span className="popup__input-error" id="link-error" hidden></span>
-        </fieldset>
-      </PopupWithForm>
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
 
       <ImagePopup
         card={selectedCard}
