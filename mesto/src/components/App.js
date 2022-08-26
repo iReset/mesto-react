@@ -1,16 +1,21 @@
 import React from 'react';
 
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 import Footer from './Footer';
 import Header from './Header';
 import ImagePopup from './ImagePopup';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 
+import api from '../utils/api.js';
+
 function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  const [currentUser, setCurrentUser] = React.useState(null);
   const stateFormSetters = [setAddPlacePopupOpen, setEditAvatarPopupOpen, setEditProfilePopupOpen];
 
   function handleEditAvatarClick() {
@@ -34,8 +39,14 @@ function App() {
     setSelectedCard(null);
   }
 
+  React.useEffect(() => {
+    api.loadUserInfo()
+      .then(user => setCurrentUser(user))
+      .catch(console.log);
+  }, []);
+
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onAddPlace={handleAddPlaceClick}
@@ -114,7 +125,7 @@ function App() {
         buttonText="Да"
         onClose={closeAllPopups}
       />
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 
