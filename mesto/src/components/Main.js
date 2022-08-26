@@ -8,39 +8,7 @@ import api from '../utils/api';
 import { optionsCard } from '../utils/constants';
 
 function Main(props) {
-  const [cards, setCards] = React.useState([]);
-
   const currentUser = React.useContext(CurrentUserContext);
-
-  function handleCardLike(card) {
-    if (!currentUser)
-      return;
-
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    api.setLike(card._id, !isLiked)
-      .then(newCard => {
-        setCards(state => state.map(c => c._id === card._id ? newCard : c));
-      })
-      .catch(console.log);
-  }
-
-  function handleCardDelete(card) {
-    if (!currentUser)
-      return;
-
-    api.deleteCard(card._id)
-      .then(_ => {
-        setCards(state => state.filter(c => c._id !== card._id));
-      })
-      .catch(console.log);
-  }
-
-  React.useEffect(() => {
-    api.loadCards()
-      .then(_cards => setCards(_cards))
-      .catch(console.log);
-  }, []);
 
   return (
     <main className="main">
@@ -73,15 +41,15 @@ function Main(props) {
 
       <section className="elements root__elements" aria-label="Блок с карточками мест.">
         <ul className="elements__list">
-          {cards.map(card => {
+          {props.cards.map(card => {
             return (
               <Card
                 key={card._id}
                 card={card}
                 options={optionsCard}
                 onCardClick={props.onCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}
+                onCardLike={props.onCardLike}
+                onCardDelete={props.onCardDelete}
               />
             );
           })}
