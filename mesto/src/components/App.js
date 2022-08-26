@@ -2,6 +2,7 @@ import React from 'react';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
+import EditAvatarPopup from './EditAvatarPopup';
 import EditProfilePopup from './EditProfilePopup';
 import Footer from './Footer';
 import Header from './Header';
@@ -66,26 +67,7 @@ function App() {
       />
       <Footer />
 
-      <PopupWithForm
-        name="edit-avatar"
-        title="Обновить аватар"
-        ariaLabel="Закрыть форму ввода."
-        buttonText="Сохранить"
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      >
-        <fieldset className="popup__fieldset">
-          <input
-            className="popup__input popup__input_type_link"
-            type="url"
-            id="avatar_link"
-            name="avatar_link"
-            value=""
-            placeholder="Ссылка на аватар"
-            required />
-          <span className="popup__input-error" id="avatar_link-error" hidden></span>
-        </fieldset>
-      </PopupWithForm>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
 
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
