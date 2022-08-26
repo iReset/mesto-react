@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CurrentUserContext from '../contexts/CurrentUserContext';
+
 import Footer from './Footer';
 import Header from './Header';
 import ImagePopup from './ImagePopup';
@@ -44,7 +46,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onAddPlace={handleAddPlaceClick}
@@ -123,7 +125,7 @@ function App() {
         buttonText="Да"
         onClose={closeAllPopups}
       />
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 
