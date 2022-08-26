@@ -1,6 +1,5 @@
 function PopupWithForm(props) {
   const openClass = props.isOpen ? 'popup_opened' : '';
-  // Не хочется иметь 'null' как имя класса, поэтому тернарный оператор вместо логической операции
 
   return (
     <div className={`popup popup_type_${props.name} ${openClass}`}>
@@ -12,7 +11,12 @@ function PopupWithForm(props) {
           onClick={props.onClose}
         ></button>
         <h2 className="popup__title">{props.title}</h2>
-        <form className={`popup__form  popup__${props.name}`} id={props.name} name={props.name}>
+        <form
+          className={`popup__form  popup__${props.name}`}
+          id={props.name}
+          name={props.name}
+          onSubmit={props.onSubmit}
+        >
           {props.children}
           <button className="popup__save-button button" type="submit">{props.buttonText}</button>
         </form>

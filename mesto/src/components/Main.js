@@ -1,26 +1,13 @@
 import React from 'react';
 
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 import Card from './Card';
 
-import api from '../utils/api.js';
+import { optionsCard } from '../utils/constants';
 
 function Main(props) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    Promise.all([api.loadUserInfo(), api.loadCards()])
-      .then(([data, cards]) => {
-        const { name, about, avatar } = data;
-        setUserName(name);
-        setUserDescription(about);
-        setUserAvatar(avatar);
-        setCards(cards);
-      })
-      .catch(console.log);
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="main">
@@ -31,11 +18,11 @@ function Main(props) {
           aria-label="Изменить аватар."
           onClick={props.onEditAvatar}
         >
-          <img className="profile__avatar" src={userAvatar} alt="Аватар пользователя." />
+          <img className="profile__avatar" src={currentUser && currentUser.avatar} alt="Аватар пользователя." />
         </button>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
-          <p className="profile__about">{userDescription}</p>
+          <h1 className="profile__name">{currentUser && currentUser.name}</h1>
+          <p className="profile__about">{currentUser && currentUser.about}</p>
           <button
             className="profile__edit-button button"
             type="button"
@@ -53,12 +40,15 @@ function Main(props) {
 
       <section className="elements root__elements" aria-label="Блок с карточками мест.">
         <ul className="elements__list">
-          {cards.map(card => {
+          {props.cards.map(card => {
             return (
               <Card
                 key={card._id}
                 card={card}
+                options={optionsCard}
                 onCardClick={props.onCardClick}
+                onCardLike={props.onCardLike}
+                onCardDelete={props.onCardDelete}
               />
             );
           })}
