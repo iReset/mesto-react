@@ -4,7 +4,6 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 
-import api from '../utils/api';
 import { optionsCard } from '../utils/constants';
 
 function Main(props) {
