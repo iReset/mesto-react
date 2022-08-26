@@ -84,6 +84,14 @@ function App() {
       })
       .catch(console.log);
   }
+  function handleAddPlaceSubmit(card) {
+    api.addCard(card)
+      .then(result => {
+        setCards([result, ...cards]);
+        closeAllPopups();
+      })
+      .catch(console.log);
+  }
 
   React.useEffect(() => {
     api.loadCards()
@@ -115,7 +123,7 @@ function App() {
 
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onSubmit={handleAddPlaceSubmit} />
 
       <ImagePopup
         card={selectedCard}

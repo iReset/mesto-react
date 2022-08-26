@@ -14,6 +14,15 @@ function AddPlacePopup(props) {
     setLink(e.target.value);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    props.onSubmit({
+      name: title.trim(),
+      link: link.trim(),
+    });
+  }
+
   React.useEffect(_ => {
     setTitle('');
     setLink('');
@@ -27,6 +36,7 @@ function AddPlacePopup(props) {
       buttonText="Сохранить"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
     >
       <fieldset className="popup__fieldset">
         <input className="popup__input popup__input_type_title" type="text" id="title" name="title" value={title}
