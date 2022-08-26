@@ -35,6 +35,15 @@ function App() {
     setSelectedCard(card);
   };
 
+  function handleUpdateUser(user) {
+    api.editProfile(user)
+      .then(result => {
+        setCurrentUser(result);
+        closeAllPopups();
+      })
+      .catch(console.log);
+  }
+
   function closeAllPopups() {
     stateFormSetters.forEach(setter => setter(false));
     setSelectedCard(null);
@@ -78,7 +87,7 @@ function App() {
         </fieldset>
       </PopupWithForm>
 
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
       <PopupWithForm
         name="add-card"

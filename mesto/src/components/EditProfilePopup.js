@@ -18,6 +18,14 @@ function EditProfilePopup(props) {
     setAbout(e.target.value);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onUpdateUser({
+      name: name.trim(),
+      about: about.trim(),
+    });
+  }
+
   React.useEffect(_ => {
     if (props.isOpen) {
       setName(currentUser.name);
@@ -33,6 +41,7 @@ function EditProfilePopup(props) {
       buttonText="Сохранить"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
     >
       <fieldset className="popup__fieldset">
         <input className="popup__input popup__input_type_name" type="text" id="name" name="name" value={name}
