@@ -3,11 +3,11 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
-  const [title, setTitle] = React.useState('');
+  const [name, setName] = React.useState('');
   const [link, setLink] = React.useState('');
 
   function handleTitleChange(e) {
-    setTitle(e.target.value);
+    setName(e.target.value);
   }
 
   function handleLinkChange(e) {
@@ -18,13 +18,13 @@ function AddPlacePopup(props) {
     e.preventDefault();
 
     props.onSubmit({
-      name: title.trim(),
+      name: name.trim(),
       link: link.trim(),
     });
   }
 
   React.useEffect(_ => {
-    setTitle('');
+    setName('');
     setLink('');
   }, [props.isOpen]);
 
@@ -39,7 +39,7 @@ function AddPlacePopup(props) {
       onSubmit={handleSubmit}
     >
       <fieldset className="popup__fieldset">
-        <input className="popup__input popup__input_type_title" type="text" id="title" name="title" value={title}
+        <input className="popup__input popup__input_type_title" type="text" id="title" name="title" value={name}
           placeholder="Название" required minLength="2" maxLength="30" onChange={handleTitleChange} />
         <span className="popup__input-error" id="title-error" hidden></span>
         <input className="popup__input popup__input_type_link" type="url" id="link" name="link" value={link}
