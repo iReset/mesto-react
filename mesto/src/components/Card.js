@@ -20,12 +20,26 @@ function Card(props) {
     props.onCardClick(props.card);
   }
 
+  function handleLikeClick() {
+    props.onCardLike(props.card);
+  }
+
+  function handleRemoveClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <li className="element">
       <div className="element__image-container">
         <img className="element__image" src={link} alt={name} onClick={handleClick} />
       </div>
-      <button className="element__remove-button button" type="button" hidden={!isOwn} aria-label="Удалить."></button>
+      <button
+        className="element__remove-button button"
+        type="button"
+        hidden={!isOwn}
+        aria-label="Удалить."
+        onClick={handleRemoveClick}
+      ></button>
       <div className="element__info">
         <h2 className="element__caption">{name}</h2>
         <div className="element__like">
@@ -33,6 +47,7 @@ function Card(props) {
             className={`element__like-button button ${likeButtonActiveClassName}`}
             type="button"
             aria-label="Нравится."
+            onClick={handleLikeClick}
           ></button>
           <p className="element__like-quantity">{likes}</p>
         </div>
