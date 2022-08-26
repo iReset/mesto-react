@@ -12,6 +12,19 @@ function Main(props) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
+  function handleCardLike(card) {
+    if (!currentUser)
+      return;
+
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    api.setLike(card._id, !isLiked)
+      .then(newCard => {
+        setCards(state => state.map(c => c._id === card._id ? newCard : c));
+      })
+      .catch(console.log);
+  }
+
   React.useEffect(() => {
     api.loadCards()
       .then(_cards => setCards(_cards))
@@ -56,6 +69,7 @@ function Main(props) {
                 card={card}
                 options={optionsCard}
                 onCardClick={props.onCardClick}
+                onCardLike={handleCardLike}
               />
             );
           })}

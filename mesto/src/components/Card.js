@@ -20,6 +20,10 @@ function Card(props) {
     props.onCardClick(props.card);
   }
 
+  function handleLikeCard() {
+    props.onCardLike(props.card);
+  }
+
   return (
     <li className="element">
       <div className="element__image-container">
@@ -33,6 +37,7 @@ function Card(props) {
             className={`element__like-button button ${likeButtonActiveClassName}`}
             type="button"
             aria-label="Нравится."
+            onClick={handleLikeCard}
           ></button>
           <p className="element__like-quantity">{likes}</p>
         </div>
