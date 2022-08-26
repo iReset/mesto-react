@@ -1,6 +1,18 @@
+import React from 'react';
+
 import PopupWithForm from './PopupWithForm';
 
 function EditAvatarPopup(props) {
+  const linkRef = React.useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    props.onUpdateAvatar({
+      avatar: linkRef.current.value.trim(),
+    });
+  }
+
   return (
     <PopupWithForm
       name="edit-avatar"
@@ -9,6 +21,7 @@ function EditAvatarPopup(props) {
       buttonText="Сохранить"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
     >
       <fieldset className="popup__fieldset">
         <input
@@ -18,6 +31,7 @@ function EditAvatarPopup(props) {
           name="avatar_link"
           value=""
           placeholder="Ссылка на аватар"
+          ref={linkRef}
           required />
         <span className="popup__input-error" id="avatar_link-error" hidden></span>
       </fieldset>

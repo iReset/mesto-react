@@ -45,6 +45,15 @@ function App() {
       .catch(console.log);
   }
 
+  function handleUpdateAvatar(avatar) {
+    api.editAvatar(avatar)
+      .then(result => {
+        setCurrentUser(result);
+        closeAllPopups();
+      })
+      .catch(console.log);
+  }
+
   function closeAllPopups() {
     stateFormSetters.forEach(setter => setter(false));
     setSelectedCard(null);
@@ -67,7 +76,7 @@ function App() {
       />
       <Footer />
 
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
