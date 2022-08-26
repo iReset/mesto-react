@@ -4,7 +4,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 
-import api from '../utils/api.js';
+import api from '../utils/api';
+import { optionsCard } from '../utils/constants';
 
 function Main(props) {
   const [cards, setCards] = React.useState([]);
@@ -15,7 +16,7 @@ function Main(props) {
     api.loadCards()
       .then(_cards => setCards(_cards))
       .catch(console.log);
-  }, [currentUser]);
+  }, []);
 
   return (
     <main className="main">
@@ -53,6 +54,7 @@ function Main(props) {
               <Card
                 key={card._id}
                 card={card}
+                options={optionsCard}
                 onCardClick={props.onCardClick}
               />
             );
