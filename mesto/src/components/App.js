@@ -24,19 +24,19 @@ function App() {
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
-  };
+  }
 
   function handleEditProfileClick() {
     setEditProfilePopupOpen(true);
-  };
+  }
 
   function handleAddPlaceClick() {
     setAddPlacePopupOpen(true);
-  };
+  }
 
   function handleCardClick(card) {
     setSelectedCard(card);
-  };
+  }
 
   function handleUpdateUser(user) {
     api.editProfile(user)

@@ -48,6 +48,6 @@ function AddPlacePopup(props) {
       </fieldset>
     </PopupWithForm>
   );
-};
+}
 
 export default AddPlacePopup;

@@ -54,6 +54,6 @@ function EditAvatarPopup(props) {
       </fieldset>
     </PopupWithForm>
   );
-};
+}
 
 export default EditAvatarPopup;
