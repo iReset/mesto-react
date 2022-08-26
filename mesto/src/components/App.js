@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CurrentUserContext from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import Footer from './Footer';
 import Header from './Header';
