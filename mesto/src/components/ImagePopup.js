@@ -1,7 +1,13 @@
 function ImagePopup(props) {
   const openClass = props.card ? 'popup_opened' : '';
-  const link = props.card && props.card.link;
-  const alt = props.card && props.card.alt;
+  // тут тоже не пойму. && - это логическая операция.
+  // props.card && 'popup_opened'
+  // вернет либо второй операнд, т.е. в данном случае 'popup_opened',
+  // либо первый, если он при приведении к логическому типу дает falsе
+  // в моем случае при отсутствии card возвращается null
+  // если когда-нибудь будет css-класс null, то будет нехорошо
+  const link = props.card?.link;
+  const alt = props.card?.alt;
 
   return (
     <div className={`popup popup_type_open-image ${openClass}`}>

@@ -27,7 +27,7 @@ function EditProfilePopup(props) {
   }
 
   React.useEffect(_ => {
-    if (props.isOpen) {
+    if (props.isOpen && currentUser) {
       setName(currentUser.name);
       setAbout(currentUser.about);
     }
@@ -46,6 +46,9 @@ function EditProfilePopup(props) {
       <fieldset className="popup__fieldset">
         <input className="popup__input popup__input_type_name" type="text" id="name" name="name" value={name}
           placeholder="Имя" required minLength="2" maxLength="40" onChange={handleNameChange} />
+        {/* тут не понял. если пользователь не успеет прогрузиться, то не выполнится эффект в строке 29, и
+        в стейт не установится имя пользователя. т.е. будет использовано имя пользователя, установленное по умолчанию
+        в строке 10, т.е. ''. проверено. или я все-таки чего-то не догоняю? */}
         <span className="popup__input-error" id="name-error" hidden></span>
         <input className="popup__input popup__input_type_about" type="text" id="about" name="about" value={about}
           placeholder="О себе" required minLength="2" maxLength="200" onChange={handleAboutChange} />

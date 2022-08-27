@@ -18,11 +18,12 @@ function Main(props) {
           aria-label="Изменить аватар."
           onClick={props.onEditAvatar}
         >
-          <img className="profile__avatar" src={currentUser && currentUser.avatar} alt="Аватар пользователя." />
+          <img className="profile__avatar" src={currentUser?.avatar} alt="Аватар пользователя." />
+          {/* Спасибо!!! Запямятовал про эту замечательную вещь */}
         </button>
         <div className="profile__info">
-          <h1 className="profile__name">{currentUser && currentUser.name}</h1>
-          <p className="profile__about">{currentUser && currentUser.about}</p>
+          <h1 className="profile__name">{currentUser?.name}</h1>
+          <p className="profile__about">{currentUser?.about}</p>
           <button
             className="profile__edit-button button"
             type="button"
