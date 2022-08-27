@@ -7,13 +7,10 @@ function Card(props) {
 
   if (!props.card) return null;
 
-  const name = props.card.name;
-  const link = props.card.link;
-  const likes = props.card.likes.length;
-  const owner = props.card.owner;
+  const { name, link, likes, owner } = props.card;
 
   const isOwn = currentUser && currentUser._id === owner._id;
-  const isLiked = currentUser && props.card.likes.some(i => i._id === currentUser._id);
+  const isLiked = currentUser && likes.some(i => i._id === currentUser._id);
   const likeButtonActiveClassName = isLiked ? props.options.likeButtonActiveClassName : '';
 
   function handleClick() {
@@ -49,7 +46,7 @@ function Card(props) {
             aria-label="Нравится."
             onClick={handleLikeClick}
           ></button>
-          <p className="element__like-quantity">{likes}</p>
+          <p className="element__like-quantity">{likes.length}</p>
         </div>
       </div>
     </li>
